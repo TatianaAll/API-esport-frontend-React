@@ -1,4 +1,5 @@
 import Title from "./Title";
+import CTA from "./CTA";
 
 function NavBar() {
   return (
@@ -6,15 +7,15 @@ function NavBar() {
       <ul className="flex justify-start items-center">
         {/* Import title with the component */}
         <Title mainTitle="Cosy Games" subtitle="Turnament" size="small" />
-        <li className="px-8 py-4 text-[#64403E] lg:text-lg">Home</li>
-        <li className="px-8 py-4 text-[#64403E] lg:text-lg">
+        <li className="px-8 py-4 text-chocolate lg:text-lg">Home</li>
+        <li className="px-8 py-4 text-chocolate lg:text-lg">
           <a href="#second-section">Turnaments</a>
         </li>
-        <li className="px-8 py-4 text-[#64403E] lg:text-lg">
+        <li className="px-8 py-4 text-chocolate lg:text-lg">
           <a href="#third-section">Teams</a>
         </li>
-        <li className="px-8 py-4 text-[#64403E] lg:text-lg">
-          <a href="#fourth-section">Login</a>
+        <li>
+          <CTA text="Login/Register" buttonWidth="100%" linkTo="#" />
         </li>
       </ul>
     </nav>

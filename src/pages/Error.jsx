@@ -1,6 +1,6 @@
 function Error() {
   return (
-    <div>Error</div>
+    <div>Oops cette page n'existe pas</div>
   )
 }
 
