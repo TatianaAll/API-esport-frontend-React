@@ -7,12 +7,12 @@ function NavBar() {
     <nav className="bg-frappe w-full h-20">
       <ul className="flex justify-start items-center">
         {/* Import title with the component */}
-        <Title mainTitle="Cosy Games" subtitle="Turnament" size="small" />
+        <Title mainTitle="Cosy Games" subtitle="tournaments" size="small" />
         <li className="px-8 py-4 text-chocolate lg:text-lg">
           <Link to={`/`}>Home</Link>
         </li>
         <li className="px-8 py-4 text-chocolate lg:text-lg">
-          <Link to={`/turnaments`}>Turnaments</Link>
+          <Link to={`/tournaments`}>Tournaments</Link>
         </li>
         <li className="px-8 py-4 text-chocolate lg:text-lg">
           <a href="#third-section">Teams</a>

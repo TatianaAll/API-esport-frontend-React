@@ -6,12 +6,12 @@ function Home() {
     <>
       <section className="flex items-center justify-center bg-[url('/images/cosyGame_homepage.jpg')] bg-cover bg-center h-[90vh]">
         <div className="flex rounded-3xl p-15 shadow-2xl/20 inset-shadow-sm inset-shadow-current/20 backdrop-blur-xs bg-light/60 w-fit">
-          <Title mainTitle="Cosy Games" subtitle="Turnament" size="large" />
+          <Title mainTitle="Cosy Games" subtitle="tournaments" size="large" />
         </div>
       </section>
       <section className="p-6 w-[75%] mx-auto">
         <h2 className="font-Mitr text-chocolate text-3xl text-center py-5">
-          What is cosy Games turnaments ?
+          What is cosy Games tournaments ?
         </h2>
         <div className="my-3">
         <p>

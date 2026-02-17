@@ -1,13 +1,13 @@
 import CTA from "../components/CTA";
 import Card from "../components/Card";
 
-function Turnaments() {
+function Tournaments() {
   return (
     <>
       <section>
         <div className="bg-latte w-[40%] mx-auto p-8 rounded-2xl mt-5">
           <h3 className="font-Mitr text-center text-2xl text-chocolate mb-2">
-            Last turnament
+            Last tournament
           </h3>
           <Card
             infoCTA="Voir plus"
@@ -51,7 +51,7 @@ function Turnaments() {
             />
           </div>
         </div>
-        <CTA text= "See all" buttonWidth="20%" linkTo="#" />
+        <CTA text="See all" buttonWidth="20%" linkTo="#" />
       </section>
       <section className="my-5 py-5">
         <h3 className="font-Mitr text-center text-2xl text-latte mb-2">
@@ -86,10 +86,10 @@ function Turnaments() {
             />
           </div>
         </div>
-        <CTA text= "See all" buttonWidth="20%" linkTo="#" />
+        <CTA text="See all" buttonWidth="20%" linkTo="#" />
       </section>
     </>
   );
 }
 
-export default Turnaments;
+export default Tournaments;
