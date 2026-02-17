@@ -5,7 +5,7 @@ function Home() {
   return (
     <>
       <section className="flex items-center justify-center bg-[url('/images/cosyGame_homepage.jpg')] bg-cover bg-center h-[90vh]">
-        <div className="flex rounded-3xl p-15 shadow-2xl/20 inset-shadow-sm inset-shadow-current/20 backdrop-blur-xs bg-light/50 w-fit">
+        <div className="flex rounded-3xl p-15 shadow-2xl/20 inset-shadow-sm inset-shadow-current/20 backdrop-blur-xs bg-light/60 w-fit">
           <Title mainTitle="Cosy Games" subtitle="Turnament" size="large" />
         </div>
       </section>
