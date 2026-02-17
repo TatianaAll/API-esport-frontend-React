@@ -9,10 +9,11 @@ function Home() {
           <Title mainTitle="Cosy Games" subtitle="Turnament" size="large" />
         </div>
       </section>
-      <section className="p-6">
-        <h2 className="font-Mitr text-chocolate text-3xl text-center">
+      <section className="p-6 w-[75%] mx-auto">
+        <h2 className="font-Mitr text-chocolate text-3xl text-center py-5">
           What is cosy Games turnaments ?
         </h2>
+        <div className="my-3">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ratione
           repellat rem, enim vel labore sint nulla ea quia reprehenderit
@@ -25,6 +26,7 @@ function Home() {
           assumenda molestias veritatis fuga, consequuntur laboriosam, optio
           magni voluptatibus velit?
         </p>
+        </div>
 
         <CTA text= "Register" buttonWidth="25%"/>
       </section>
