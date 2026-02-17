@@ -15,11 +15,11 @@ function Title({ mainTitle, subtitle, size }) {
     <div className={`flex`}>
       <div className="mt-3">
         <h2
-          className={`font-[CreamCake] text-[#64403E] ${sizes[size].mainTitle}`} >
+          className={`font-[CreamCake] text-chocolate ${sizes[size].mainTitle}`} >
           {mainTitle}
         </h2>
         <h3
-          className={`font-Mitr tracking-wide uppercase ms-[20%] text-[#D7B997] ${sizes[size].subtitle}`} >
+          className={`font-Mitr tracking-wide uppercase ms-[20%] text-latte ${sizes[size].subtitle}`} >
           {subtitle}
         </h3>
       </div>

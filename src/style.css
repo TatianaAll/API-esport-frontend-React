@@ -8,3 +8,8 @@
 body {
   font-family: 'Outfit', sans-serif;
 }
+
+@theme {
+  --color-chocolate: #64403E;
+  --color-latte: #D7B997;
+}
