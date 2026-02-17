@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "CreamCake";
+  src: url("../src/assets/fonts/CreamCake.otf") format("truetype");
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+}
