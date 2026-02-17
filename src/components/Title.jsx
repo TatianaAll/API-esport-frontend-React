@@ -19,7 +19,7 @@ function Title({ mainTitle, subtitle, size }) {
           {mainTitle}
         </h2>
         <h3
-          className={`font-Mitr tracking-wide uppercase ms-[20%] text-latte ${sizes[size].subtitle}`} >
+          className={`font-Mitr tracking-wide uppercase ms-[20%] text-matcha font-medium ${sizes[size].subtitle}`} >
           {subtitle}
         </h3>
       </div>
