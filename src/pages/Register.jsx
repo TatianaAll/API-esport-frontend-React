@@ -1,26 +1,53 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { register } from "../services/AuthenticationService";
 import { useState } from "react";
 
 function Register() {
+  // declaration of all my constants with UseState (one for all the parameters)
   const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
+  // Message of success or error
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  // redirect when successfly creating a new account
+  const redirectWhenAccountCreated = useNavigate();
 
+  // Function handle register asynchronous
   let handleRegister = async (event) => {
     event.preventDefault();
-    console.log(email, firstname, lastname, password);
+    // console.log(email, firstname, lastname, password);
 
     try {
       let newUserData = await register(firstname, lastname, email, password);
       console.log(newUserData);
+      if (newUserData.message == "Utilisateur créé !") {
+        setSuccessMessage("New user created successfuly !");
+        // Message + timeout before redirection
+        setTimeout(() => {
+          redirectWhenAccountCreated("/login");
+        }, 3000);
+      } else {
+        setErrorMessage("Impossible to create the new user");
+      }
     } catch (error) {
       console.log(error.message);
     }
   };
+
   return (
     <section className="bg-[url('/images/tunicbg.jpg')] bg-cover bg-center py-9 min-h-[90vh]">
+      {successMessage && (
+        <div className="bg-green-500 text-light p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+          {successMessage}
+        </div>
+      )}
+      {errorMessage && (
+        <div className="bg-red-500 text-white p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+          {errorMessage}
+        </div>
+      )}
       <div className="bg-matcha rounded-2xl w-[60%] mx-auto p-4">
         <div className="flex justify-center items-center gap-4 mb-4">
           <div className="w-[2%]">

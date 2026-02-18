@@ -1,10 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../services/AuthenticationService";
 import { useState } from "react";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // Message of success or error
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const redirectWhenLoginSuccessfully = useNavigate();
 
   let handleLogin = async (event) => {
     // Prevent default = no submission
@@ -15,9 +21,17 @@ function Login() {
     try {
       // waiting the response of the backend
       let userData = await login(email, password);
-      console.log(userData);
       // localStorage for the JWT
       localStorage.setItem("cosy_games_token", userData.token);
+      if (userData) {
+        setSuccessMessage("Welcome !");
+        // Message + timeout before redirection
+        setTimeout(() => {
+          redirectWhenLoginSuccessfully("/");
+        }, 3000);
+      } else {
+        setErrorMessage("Impossible to create the new user");
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -25,6 +39,16 @@ function Login() {
 
   return (
     <section className="bg-[url('/images/tunicbg.jpg')] bg-cover bg-center py-9 min-h-[90vh]">
+      {successMessage && (
+        <div className="bg-green-500 text-light p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+          {successMessage}
+        </div>
+      )}
+      {errorMessage && (
+        <div className="bg-red-500 text-white p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+          {errorMessage}
+        </div>
+      )}
       <form
         className="bg-frappe rounded-2xl w-[60%] mx-auto p-4"
         onSubmit={handleLogin}
