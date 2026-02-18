@@ -12,8 +12,8 @@ function Team() {
       <div className="bg-chocolate w-[80%] mx-auto p-3 rounded-2xl">
         <div className="mb-6">
           <div className="flex justify-center items-center gap-4 mb-4">
-            <div className="w-[5%] text-light">
-              <img src="/images/team.png" alt="" className="w-full" />
+            <div className="w-[5%]">
+              <img src="/images/team.png" alt="logo team" className="w-full" />
             </div>
             <h2 className="font-Mitr text-frappe text-3xl text-center my-3">
               Players
