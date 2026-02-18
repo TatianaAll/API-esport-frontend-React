@@ -18,7 +18,7 @@ function NavBar() {
           <Link to={`/teams`}>Teams</Link>
         </li>
         <li>
-          <CTA text="Login/Register" buttonWidth="100%" linkTo="#" />
+          <CTA text="Login/Register" buttonWidth="100%" linkTo="/login" />
         </li>
       </ul>
     </nav>
