@@ -15,7 +15,7 @@ function NavBar() {
           <Link to={`/tournaments`}>Tournaments</Link>
         </li>
         <li className="px-8 py-4 text-chocolate lg:text-lg">
-          <a href="#third-section">Teams</a>
+          <Link to={`/teams`}>Teams</Link>
         </li>
         <li>
           <CTA text="Login/Register" buttonWidth="100%" linkTo="#" />
