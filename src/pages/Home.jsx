@@ -22,7 +22,7 @@ function Home() {
             What is cosy Games tournaments ?
           </h2>
         </div>
-        <div className="my-3">
+        <div className="mb-5 pb-3">
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
             ratione repellat rem, enim vel labore sint nulla ea quia
@@ -37,7 +37,7 @@ function Home() {
           </p>
         </div>
 
-        <CTA text="Register" buttonWidth="25%" />
+        <CTA text="Register" buttonWidth="25%" linkTo="/register"/>
       </section>
     </>
   );

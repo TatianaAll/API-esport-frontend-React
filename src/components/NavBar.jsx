@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <nav className="bg-frappe w-full h-20">
-      <ul className="flex justify-start items-center">
+      <ul className="flex justify-between items-center px-8">
         {/* Import title with the component */}
         <Title mainTitle="Cosy Games" subtitle="tournaments" size="small" />
         <li className="px-8 py-4 text-chocolate lg:text-lg">
@@ -18,7 +18,7 @@ function NavBar() {
           <Link to={`/teams`}>Teams</Link>
         </li>
         <li>
-          <CTA text="Login/Register" buttonWidth="100%" linkTo="/login" />
+          <CTA text="Login" buttonWidth="100%" linkTo="/login" />
         </li>
       </ul>
     </nav>
