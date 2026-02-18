@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
+import { register } from "../services/AuthenticationService";
+import { useState } from "react";
 
 function Register() {
+  const [email, setEmail] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [password, setPassword] = useState("");
+
+  let handleRegister = async (event) => {
+    event.preventDefault();
+    console.log(email, firstname, lastname, password);
+
+    try {
+      let newUserData = await register(firstname, lastname, email, password);
+      console.log(newUserData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <section className="bg-[url('/images/tunicbg.jpg')] bg-cover bg-center py-9 min-h-[90vh]">
       <div className="bg-matcha rounded-2xl w-[60%] mx-auto p-4">
@@ -8,9 +26,41 @@ function Register() {
           <div className="w-[2%]">
             <img src="/images/lock.png" alt="logo start" className="w-full" />
           </div>
-          <h1 className="text-frappe text-3xl text-center my-3">Create an account</h1>
+          <h1 className="text-frappe text-3xl text-center my-3">
+            Create an account
+          </h1>
         </div>
-        <div>
+        <form onSubmit={handleRegister}>
+          <div className="flex">
+            <label htmlFor="firstname" className="m-2 text-frappe">
+              First name
+            </label>
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              value={firstname}
+              className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              onChange={(event) => {
+                setFirstname(event.target.value);
+              }}
+              required
+            />
+            <label htmlFor="lastname" className="m-2 text-frappe">
+              Last name
+            </label>
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              value={lastname}
+              className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              onChange={(event) => {
+                setLastname(event.target.value);
+              }}
+              required
+            />
+          </div>
           <div className="flex flex-col">
             <label htmlFor="email" className="m-2 text-frappe">
               Email
@@ -19,7 +69,11 @@ function Register() {
               type="text"
               id="email"
               name="email"
+              value={email}
               className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
               required
             />
           </div>
@@ -31,19 +85,11 @@ function Register() {
               type="password"
               name="password"
               id="password"
-              className="bg-light rounded-xl p-4 m-2 text-frappe"
-              required
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="password2" className="m-2 text-frappe">
-              Confirm password
-            </label>
-            <input
-              type="password"
-              name="password2"
-              id="password2"
+              value={password}
               className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
               required
             />
           </div>
@@ -53,7 +99,7 @@ function Register() {
           >
             Register
           </button>
-        </div>
+        </form>
         <p>
           Already have an account ?
           <Link
