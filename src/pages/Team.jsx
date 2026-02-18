@@ -6,14 +6,20 @@ function Team() {
   let params = useParams();
   return (
     <section className="bg-[url('/images/stardewbackground.png')] bg-cover bg-center py-9">
-      <h1 className="font-Mitr text-frappe text-2xl text-center my-3">
+      <h1 className="font-Mitr text-frappe text-5xl text-center my-3">
         Team {params.id}
       </h1>
       <div className="bg-chocolate w-[80%] mx-auto p-3 rounded-2xl">
-        <div className="mb-4">
-          <h2 className="font-Mitr text-frappe text-xl text-center my-3">
-            Players
-          </h2>
+        <div className="mb-6">
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <div className="w-[5%] text-light">
+              <img src="/images/team.png" alt="" className="w-full" />
+            </div>
+            <h2 className="font-Mitr text-frappe text-3xl text-center my-3">
+              Players
+            </h2>
+          </div>
+
           <div className="flex gap-18 justify-center items-center">
             <Card
               infoCTA="See profile"
@@ -43,18 +49,28 @@ function Team() {
         </div>
 
         <div className="my-8">
-          <h2 className="font-Mitr text-frappe text-xl text-center my-3">
-            Favourites Games
-          </h2>
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <div className="w-[5%] text-light">
+              <img src="/images/okay.png" alt="" className="w-full" />
+            </div>
+            <h2 className="font-Mitr text-frappe text-3xl text-center my-3">
+              Favourites games
+            </h2>
+          </div>
           <div className="flex gap-18 justify-center items-center">
-            <Game name="Gris" image="/images/gris.webp" size="sm"/>
+            <Game name="Gris" image="/images/gris.webp" size="sm" />
           </div>
         </div>
 
         <div>
-          <h2 className="font-Mitr text-frappe text-xl text-center my-3">
-            Played tournaments
-          </h2>
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <div className="w-[5%] text-light">
+              <img src="/images/trophy.png" alt="" className="w-full" />
+            </div>
+            <h2 className="font-Mitr text-frappe text-3xl text-center my-3">
+              Tournaments
+            </h2>
+          </div>
         </div>
       </div>
     </section>

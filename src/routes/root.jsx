@@ -6,6 +6,8 @@ import Home from "../pages/Home";
 import Tournaments from "../pages/Tournaments";
 import Teams from "../pages/Teams";
 import Team from "../pages/Team";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -13,10 +15,12 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <Error />,
     children: [
-      {path: "/", element: <Home />},
-      {path: "/tournaments", element: <Tournaments />},
-      {path: "/teams", element: <Teams />},
-      {path: "/team/:id", element: <Team />}
+      { path: "/", element: <Home /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/tournaments", element: <Tournaments /> },
+      { path: "/teams", element: <Teams /> },
+      { path: "/team/:id", element: <Team /> },
     ],
   },
 ]);
