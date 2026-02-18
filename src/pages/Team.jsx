@@ -1,17 +1,20 @@
 import { useParams } from "react-router-dom";
 import Card from "../components/Card";
+import Game from "../components/Game";
 
 function Team() {
   let params = useParams();
   return (
-    <section className="bg-[url('/images/stardewbackground.png')] bg-cover bg-center h-[90vh] py-9">
+    <section className="bg-[url('/images/stardewbackground.png')] bg-cover bg-center py-9">
       <h1 className="font-Mitr text-frappe text-2xl text-center my-3">
         Team {params.id}
       </h1>
-      <div className="bg-chocolate w-[90%] mx-auto p-3 rounded-2xl">
-        <div>
-          <h2 className="font-Mitr text-frappe text-xl text-center">Players</h2>
-          <div className="flex gap-3 justify-center items-center">
+      <div className="bg-chocolate w-[80%] mx-auto p-3 rounded-2xl">
+        <div className="mb-4">
+          <h2 className="font-Mitr text-frappe text-xl text-center my-3">
+            Players
+          </h2>
+          <div className="flex gap-18 justify-center items-center">
             <Card
               infoCTA="See profile"
               name="Player1"
@@ -37,6 +40,21 @@ function Team() {
               size="sm"
             />
           </div>
+        </div>
+
+        <div className="my-8">
+          <h2 className="font-Mitr text-frappe text-xl text-center my-3">
+            Favourites Games
+          </h2>
+          <div className="flex gap-18 justify-center items-center">
+            <Game name="Gris" image="/images/gris.webp" size="sm"/>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="font-Mitr text-frappe text-xl text-center my-3">
+            Played tournaments
+          </h2>
         </div>
       </div>
     </section>
