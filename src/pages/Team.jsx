@@ -11,13 +11,30 @@ function Team() {
       <div className="bg-chocolate w-[90%] mx-auto p-3 rounded-2xl">
         <div>
           <h2 className="font-Mitr text-frappe text-xl text-center">Players</h2>
-          <div className="flex">
+          <div className="flex gap-3 justify-center items-center">
             <Card
               infoCTA="See profile"
               name="Player1"
               info="Team captain"
               photo="/images/Flowey_battle_winking.webp"
               linkToCTA="/profile/Player1"
+              size="sm"
+            />
+            <Card
+              infoCTA="See profile"
+              name="Player2"
+              info="Teammate"
+              photo="/images/Undyne_overworld_epilogue.webp"
+              linkToCTA="/profile/Player2"
+              size="sm"
+            />
+            <Card
+              infoCTA="See profile"
+              name="Player3"
+              info="Teammate"
+              photo="/images/Flowey_battle_winking.webp"
+              linkToCTA="/profile/Player3"
+              size="sm"
             />
           </div>
         </div>
