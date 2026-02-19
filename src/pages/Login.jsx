@@ -15,8 +15,8 @@ function Login() {
   let handleLogin = async (event) => {
     // Prevent default = no submission
     event.preventDefault();
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
 
     try {
       // waiting the response of the backend
