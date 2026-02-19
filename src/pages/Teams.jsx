@@ -1,7 +1,30 @@
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import ResearchBar from "../components/ResearchBar";
+import { allTeams } from "../services/TeamsService";
+import Spinner from "../components/Spinner";
 
 function Teams() {
+  const [dataTeams, setDataTeams] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        const fetchingData = await allTeams();
+        setDataTeams(fetchingData);
+        setLoading(true);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchTeams();
+  }, []);
+
+  const last3TeamsRegistered = dataTeams
+    .sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date))
+    .slice(0, 2);
+
   return (
     <div className="relative min-h-[90vh]">
       {/* Background */}
@@ -30,27 +53,21 @@ function Teams() {
             </h3>
           </div>
           <div className="flex flex-col lg:flex-row justify-center gap-4">
-            <Card
-              infoCTA="Voir plus"
-              name="Team"
-              info="team"
-              photo="/images/stardew-valley.jpg"
-              linkToCTA="/team/1"
-            />
-            <Card
-              infoCTA="Voir plus"
-              name="Team"
-              info="team"
-              photo="/images/stardew-valley.jpg"
-              linkToCTA="/team/2"
-            />
-            <Card
-              infoCTA="Voir plus"
-              name="Team"
-              info="team"
-              photo="/images/stardew-valley.jpg"
-              linkToCTA="/team/3"
-            />
+            {loading ? (
+              last3TeamsRegistered.map((team) => {
+                return (
+                  <Card
+                    infoCTA="Voir plus"
+                    name={team.name}
+                    info={new Date(team.creation_date).toLocaleDateString('FR-fr')}
+                    photo="/images/stardew-valley.jpg"
+                    linkToCTA={`/team/${team._id}`}
+                  />
+                );
+              })
+            ) : (
+              <Spinner />
+            )}
           </div>
         </div>
       </section>
