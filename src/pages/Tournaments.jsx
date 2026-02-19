@@ -5,9 +5,9 @@ function Tournaments() {
   return (
     <>
       <section>
-        <div className="bg-latte w-[40%] mx-auto p-8 rounded-2xl mt-5">
+        <div className="bg-latte w-[80%] lg:w-[40%] mx-auto p-8 rounded-2xl mt-5">
           <div className="flex justify-center items-center gap-4 mb-4">
-            <div className="w-[5%]">
+            <div className="w-[7%] lg:w-[5%]">
               <img
                 src="/images/hourglass.png"
                 alt="logo start"
@@ -30,7 +30,7 @@ function Tournaments() {
       </section>
       <section className="my-5 py-5">
         <div className="flex justify-center items-center gap-4 mb-4">
-          <div className="w-[2%]">
+          <div className="w-[7%] lg:w-[3%]">
             <img
               src="/images/calendar.jpg"
               alt="logo start"
@@ -41,8 +41,8 @@ function Tournaments() {
             Upcoming
           </h3>
         </div>
-        <div className="flex gap-4 justify-center">
-          <div className="w-[30%] mt-4">
+        <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-4">
+          <div className="w-[60%] lg:w-[30%] mt-4">
             <Card
               infoCTA="test"
               name="Test"
@@ -51,7 +51,7 @@ function Tournaments() {
               linkToCTA="#"
             />
           </div>
-          <div className="w-[30%] mt-4">
+          <div className="w-[60%] lg:w-[30%] mt-4">
             <Card
               infoCTA="test"
               name="Test"
@@ -60,7 +60,7 @@ function Tournaments() {
               linkToCTA="#"
             />
           </div>
-          <div className="w-[30%] mt-4">
+          <div className="w-[60%] lg:w-[30%] mt-4">
             <Card
               infoCTA="test"
               name="Test"
@@ -75,19 +75,15 @@ function Tournaments() {
 
       <section className="my-5 py-5">
         <div className="flex justify-center items-center gap-4 mb-4">
-          <div className="w-[2%]">
-            <img
-              src="/images/crown.png"
-              alt="logo start"
-              className="w-full"
-            />
+          <div className="w-[7%] lg:w-[3%]">
+            <img src="/images/crown.png" alt="logo start" className="w-full" />
           </div>
           <h3 className="font-Mitr text-center text-2xl text-latte mb-2">
             Passed
           </h3>
         </div>
-        <div className="flex gap-4 justify-center">
-          <div className="w-[30%] mt-4">
+        <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
+          <div className="w-[60%] lg:w-[30%] mt-4">
             <Card
               infoCTA="test"
               name="Test"
@@ -96,7 +92,7 @@ function Tournaments() {
               linkToCTA="#"
             />
           </div>
-          <div className="w-[30%] mt-4">
+          <div className="w-[60%] lg:w-[30%] mt-4">
             <Card
               infoCTA="test"
               name="Test"
@@ -105,7 +101,7 @@ function Tournaments() {
               linkToCTA="#"
             />
           </div>
-          <div className="w-[30%] mt-4">
+          <div className="w-[60%] lg:w-[30%] mt-4">
             <Card
               infoCTA="test"
               name="Test"

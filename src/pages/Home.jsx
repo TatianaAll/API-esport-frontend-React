@@ -37,7 +37,7 @@ function Home() {
           </p>
         </div>
 
-        <CTA text="Register" buttonWidth="25%" linkTo="/register"/>
+        <CTA text="Register" buttonWidth="35%" linkTo="/register"/>
       </section>
     </>
   );

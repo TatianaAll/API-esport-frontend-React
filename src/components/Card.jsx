@@ -15,7 +15,7 @@ function Card({ photo, name, info, date, size, infoCTA, linkToCTA }) {
           className="mx-auto h-full w-full object-cover"
         />
       </div>
-      <article className="p-4">
+      <article className="p-3 lg:p-4">
         <h4 className="font-[CreamCake] text-chocolate text-3xl text-center">
           {name}
         </h4>

@@ -6,21 +6,21 @@ function Team() {
   let params = useParams();
   return (
     <section className="bg-[url('/images/stardewbackground.png')] bg-cover bg-center py-9">
-      <h1 className="font-Mitr text-frappe text-5xl text-center my-3">
+      <h1 className="font-Mitr text-frappe text-3xl lg:text-5xl text-center my-3">
         Team {params.id}
       </h1>
-      <div className="bg-chocolate w-[80%] mx-auto p-3 rounded-2xl">
+      <div className="bg-chocolate w-[75%] lg:w-[80%] mx-auto p-3 rounded-2xl">
         <div className="mb-6">
           <div className="flex justify-center items-center gap-4 mb-4">
-            <div className="w-[5%]">
+            <div className="w-[10%] lg:w-[5%]">
               <img src="/images/team.png" alt="logo team" className="w-full" />
             </div>
-            <h2 className="font-Mitr text-frappe text-3xl text-center my-3">
+            <h2 className="font-Mitr text-frappe text-2xl lg:text-3xl text-center my-3">
               Players
             </h2>
           </div>
 
-          <div className="flex gap-18 justify-center items-center">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-18 justify-center items-center">
             <Card
               infoCTA="See profile"
               name="Player1"
@@ -50,14 +50,14 @@ function Team() {
 
         <div className="my-8">
           <div className="flex justify-center items-center gap-4 mb-4">
-            <div className="w-[5%] text-light">
+            <div className="w-[10%] lg:w-[5%">
               <img src="/images/okay.png" alt="" className="w-full" />
             </div>
-            <h2 className="font-Mitr text-frappe text-3xl text-center my-3">
+            <h2 className="font-Mitr text-frappe text-2xl lg:text-3xl text-center my-3">
               Favourites games
             </h2>
           </div>
-          <div className="flex gap-18 justify-center items-center">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-18 justify-center items-center">
             <Game name="Gris" image="/images/gris.webp" size="sm" />
           </div>
         </div>

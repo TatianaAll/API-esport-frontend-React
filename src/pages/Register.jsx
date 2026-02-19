@@ -50,15 +50,15 @@ function Register() {
       )}
       <div className="bg-matcha rounded-2xl w-[60%] mx-auto p-4">
         <div className="flex justify-center items-center gap-4 mb-4">
-          <div className="w-[2%]">
+          <div className="w-[10%] md:w-[7%] lg:w-[3%]">
             <img src="/images/lock.png" alt="logo start" className="w-full" />
           </div>
-          <h1 className="text-frappe text-3xl text-center my-3">
+          <h1 className="text-frappe text-xl lg:text-3xl text-center my-3">
             Create an account
           </h1>
         </div>
         <form onSubmit={handleRegister}>
-          <div className="flex">
+          <div className="flex flex-col lg:flex-row">
             <label htmlFor="firstname" className="m-2 text-frappe">
               First name
             </label>
@@ -121,7 +121,7 @@ function Register() {
             />
           </div>
           <button
-            className="text-light bg-chocolate mx-auto rounded-2xl p-2 shadow-md w-28 block hover:bg-frappe hover:text-chocolate duration-300 ease-in"
+            className="text-light my-5 bg-chocolate mx-auto rounded-2xl p-2 shadow-md w-28 block hover:bg-frappe hover:text-chocolate duration-300 ease-in"
             formAction="submit"
           >
             Register

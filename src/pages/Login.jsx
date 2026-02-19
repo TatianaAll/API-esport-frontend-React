@@ -54,10 +54,10 @@ function Login() {
         onSubmit={handleLogin}
       >
         <div className="flex justify-center items-center gap-4 mb-4">
-          <div className="w-[2%]">
+          <div className="w-[10%] md:w-[5%] lg:w-[3%]">
             <img src="/images/lock.png" alt="logo start" className="w-full" />
           </div>
-          <h1 className="text-chocolate text-3xl text-center my-3">Login</h1>
+          <h1 className="text-chocolate text-xl lg:text-3xl text-center my-3">Login</h1>
         </div>
         <div>
           <div className="flex flex-col">
@@ -68,7 +68,7 @@ function Login() {
               type="text"
               id="email"
               name="email"
-              className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
               value={email}
               onChange={(event) => {
                 setEmail(event.target.value);
@@ -84,7 +84,7 @@ function Login() {
               type="password"
               name="password"
               id="password"
-              className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
               value={password}
               onChange={(event) => {
                 setPassword(event.target.value);
@@ -93,19 +93,19 @@ function Login() {
             />
             <Link
               to="#"
-              className="text-end text-matcha hover:text-chocolate duration-300 ease-in mx-2"
+              className="text-end text-matcha hover:text-chocolate duration-300 ease-in mx-2 text-sm lg:text-md mb-3"
             >
               Fogot password ?
             </Link>
           </div>
           <button
-            className="text-light bg-matcha mx-auto rounded-2xl p-2 shadow-md w-28 block hover:bg-chocolate hover:text-latte duration-300 ease-in"
+            className="text-light bg-matcha mx-auto rounded-2xl p-2 shadow-md w-28 block hover:bg-chocolate hover:text-latte duration-300 ease-in my-4"
             formAction="submit"
           >
             Login
           </button>
         </div>
-        <p>
+        <p className="text-sm lg:text-md">
           Not registred yet ?
           <Link
             to="/register"
