@@ -1,24 +1,71 @@
 import Title from "./Title";
 import CTA from "./CTA";
 import { Link } from "react-router-dom";
+import "./NavBar.css";
+import { useState } from "react";
 
 function NavBar() {
+  // useState start false -> my nav bar is not open
+  const [navIsOpen, setNavIsOpen] = useState(false);
+  // On click i wanna the burger to change and the side bar to slide
+  const handleClick = () => {
+    setNavIsOpen(!navIsOpen);
+  };
+
   return (
-    <nav className="bg-frappe w-full h-20">
+    <nav className="bg-frappe w-full h-20 overflow-hidden">
       <ul className="flex justify-between items-center px-8">
         {/* Import title with the component */}
-        <Title mainTitle="Cosy Games" subtitle="tournaments" size="small" />
-        <li className="px-8 py-4 text-chocolate lg:text-lg">
+        <li>
+          <Title mainTitle="Cosy Games" subtitle="tournaments" size="small" />
+        </li>
+
+        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
           <Link to={`/`}>Home</Link>
         </li>
-        <li className="px-8 py-4 text-chocolate lg:text-lg">
+        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
           <Link to={`/tournaments`}>Tournaments</Link>
         </li>
-        <li className="px-8 py-4 text-chocolate lg:text-lg">
+        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
           <Link to={`/teams`}>Teams</Link>
         </li>
-        <li>
+        <li className="hidden lg:block">
           <CTA text="Login" buttonWidth="100%" linkTo="/login" />
+        </li>
+
+        {/* Menu burger for mobile */}
+        <li className="lg:hidden">
+          <ul
+            id="hamburgerMenu"
+            className="absolute top-8 right-7 lg:right-10 flex flex-col justify-center"
+            onClick={handleClick}
+            data-action={navIsOpen}
+          >
+            <li id="cross1" className="h-0.75 w-8 bg-chocolate mb-2"></li>
+            <li className="h-0.75 w-8 bg-chocolate mb-2"></li>
+            <li id="cross2" className="h-0.75 w-8 bg-chocolate"></li>
+          </ul>
+
+          {/* Side bar */}
+            <ul
+              id="sideBar"
+              className={`w-60 lg:w-[20rem] bg-frappe pt-28 h-screen`}
+              data-action={navIsOpen}
+              onClick={handleClick}
+            >
+              <li className="px-8 py-4 text-chocolate text-md">
+                <Link to={`/`}>Home</Link>
+              </li>
+              <li className="px-8 py-4 text-chocolate text-md">
+                <Link to={`/tournaments`}>Tournaments</Link>
+              </li>
+              <li className="px-8 py-4 text-chocolate text-md">
+                <Link to={`/teams`}>Teams</Link>
+              </li>
+              <li>
+                <CTA text="Login" buttonWidth="70%" linkTo="/login" />
+              </li>
+            </ul>
         </li>
       </ul>
     </nav>

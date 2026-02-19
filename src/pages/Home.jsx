@@ -5,20 +5,20 @@ function Home() {
   return (
     <>
       <section className="flex items-center justify-center bg-[url('/images/cosyGame_homepage.jpg')] bg-cover bg-center h-[90vh]">
-        <div className="flex rounded-3xl p-15 shadow-2xl/20 inset-shadow-sm inset-shadow-current/20 backdrop-blur-xs bg-light/60 w-fit">
+        <div className="flex rounded-3xl p-12 lg:p-15 shadow-2xl/20 inset-shadow-sm inset-shadow-current/20 backdrop-blur-xs bg-light/60 w-fit">
           <Title mainTitle="Cosy Games" subtitle="tournaments" size="large" />
         </div>
       </section>
       <section className="p-6 w-[75%] mx-auto">
-        <div className="flex justify-center items-center gap-4 mb-4">
-          <div className="w-[5%]">
+        <div className="flex justify-center items-center gap-3 lg:gap-4 mb-4">
+          <div className="w-[30%] lg:w-[5%]">
             <img
               src="/images/questionmark.png"
               alt="logo start"
               className="w-full"
             />
           </div>
-          <h2 className="font-Mitr text-chocolate text-3xl text-center py-5">
+          <h2 className="font-Mitr text-chocolate text-2xl lg:text-3xl text-center py-5">
             What is cosy Games tournaments ?
           </h2>
         </div>

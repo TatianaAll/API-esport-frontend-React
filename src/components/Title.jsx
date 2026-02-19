@@ -2,8 +2,8 @@
 function Title({ mainTitle, subtitle, size }) {
   const sizes = {
     large: {
-      mainTitle: "text-8xl",
-      subtitle: "text-4xl",
+      mainTitle: "text-7xl lg:text-8xl",
+      subtitle: "text-2xl lg:text-4xl",
     },
     small: {
       mainTitle: "text-3xl",
