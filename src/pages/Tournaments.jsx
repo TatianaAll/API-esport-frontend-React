@@ -45,7 +45,7 @@ function Tournaments() {
               className="w-full"
             />
           </div>
-          <h3 className="font-Mitr text-center text-2xl text-latte mb-2">
+          <h3 className="font-Mitr text-center text-2xl text-chocolate mb-2">
             Upcoming
           </h3>
         </div>
@@ -86,7 +86,7 @@ function Tournaments() {
           <div className="w-[7%] lg:w-[3%]">
             <img src="/images/crown.png" alt="logo start" className="w-full" />
           </div>
-          <h3 className="font-Mitr text-center text-2xl text-latte mb-2">
+          <h3 className="font-Mitr text-center text-2xl text-chocolate mb-2">
             Passed
           </h3>
         </div>
