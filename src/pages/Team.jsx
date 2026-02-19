@@ -50,7 +50,7 @@ function Team() {
 
         <div className="my-8">
           <div className="flex justify-center items-center gap-4 mb-4">
-            <div className="w-[10%] lg:w-[5%">
+            <div className="w-[10%] lg:w-[5%]">
               <img src="/images/okay.png" alt="" className="w-full" />
             </div>
             <h2 className="font-Mitr text-frappe text-2xl lg:text-3xl text-center my-3">

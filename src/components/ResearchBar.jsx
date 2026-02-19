@@ -1,6 +1,6 @@
 function ResearchBar() {
   return (
-    <div className="flex bg-matcha w-90 rounded-2xl justify-center items-center gap-2 p-2 mx-auto my-3">
+    <div className="flex bg-matcha w-90 rounded-2xl justify-center items-center gap-2 p-2 mx-auto">
       <label className="w-10" htmlFor = "search">
         <img src="/images/Magnifying_Glass.png" alt="research" className="w-full"/>
       </label>
