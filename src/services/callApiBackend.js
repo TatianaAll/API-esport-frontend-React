@@ -13,7 +13,7 @@ export const callApiBackend = axios.create({
 
 // Interceptor for manage the errors
 // You can intercept requests or responses before they are handled by then or catch.
-// https://axios-http.com/docs/interceptors 
+// https://axios-http.com/docs/interceptors
 /*
 axios.interceptors.response.use(function onFulfilled(response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
@@ -25,11 +25,14 @@ axios.interceptors.response.use(function onFulfilled(response) {
     return Promise.reject(error);
   });
 */
+// If response ==> send the waiting response
+// If error ==> send the HTTP status + the message
 callApiBackend.interceptors.response.use(
-  response => response.data,
-  error => {
-    const message = error.message;
-    return Promise.reject(new Error(message));
-  }
+  (response) => response.data,
+  (error) => {
+    return Promise.reject({
+      status: error.response?.status,
+      message: error.response?.data?.message || error.message,
+    });
+  },
 );
-

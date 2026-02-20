@@ -19,15 +19,14 @@ function Login() {
   let handleLogin = async (event) => {
     // Prevent default = no submission
     event.preventDefault();
-    // console.log(email);
-    // console.log(password);
 
     try {
       // waiting the response of the backend
       let userData = await login(email, password);
       // localStorage for the JWT
       localStorage.setItem("cosy_games_token", userData.token);
-      localStorage.setItem("cosy_games_user", JSON.stringify(userData));
+      // local storage for the ID of the user
+      localStorage.setItem("cosy_games_user", JSON.stringify(userData.userId));
       if (userData) {
         setSuccessMessage("Welcome !");
         // Set the user logged
@@ -35,24 +34,26 @@ function Login() {
         // Message + timeout before redirection
         setTimeout(() => {
           redirectWhenLoginSuccessfully("/");
-        }, 3000);
-      } else {
-        setErrorMessage("Impossible to create the new user");
+        }, 2500);
       }
     } catch (error) {
-      console.log(error.message);
+      if (error.status === 401) {
+        setErrorMessage("Wrong email or password");
+      } else {
+        setErrorMessage("Server error, please try again later");
+      }
     }
   };
 
   return (
     <section className="bg-[url('/images/tunicbg.jpg')] bg-cover bg-center py-9 min-h-[90vh]">
       {successMessage && (
-        <div className="bg-green-500 text-light p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+        <div className="bg-matcha text-light p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
           {successMessage}
         </div>
       )}
       {errorMessage && (
-        <div className="bg-red-500 text-white p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+        <div className="bg-red-800 text-white p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
           {errorMessage}
         </div>
       )}
@@ -64,7 +65,9 @@ function Login() {
           <div className="w-[10%] md:w-[5%] lg:w-[3%]">
             <img src="/images/lock.png" alt="logo start" className="w-full" />
           </div>
-          <h1 className="text-chocolate text-xl lg:text-3xl text-center my-3">Login</h1>
+          <h1 className="text-chocolate text-xl lg:text-3xl text-center my-3">
+            Login
+          </h1>
         </div>
         <div>
           <div className="flex flex-col">
