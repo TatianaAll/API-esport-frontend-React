@@ -6,6 +6,10 @@ export const allTeams = () => {
   return callApiBackend.get("/teams");
 };
 
+export const getTeam = ({teamId}) => {
+  return callApiBackend.get(`/teams/${teamId}`);
+}
+
 export const lastTournament = () => {
   return callApiBackend.get("/teams/latest");
 }

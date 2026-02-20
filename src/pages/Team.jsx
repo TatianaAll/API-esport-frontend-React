@@ -1,13 +1,46 @@
 import { useParams } from "react-router-dom";
 import Card from "../components/Card";
 import Game from "../components/Game";
+import { useEffect, useState } from "react";
+import { getPlayersInTeam } from "../services/UsersService";
+import Spinner from "../components/Spinner";
+import { getTeam } from "../services/TeamsService";
 
 function Team() {
+  // get the params from the url
   let params = useParams();
+  console.log(params.id)
+
+  const [dataUsersInTeam, setDataUsersInTeam] = useState([]);
+  const [teamInfo, setTeamInfo] = useState([]);
+  // isLoading starting at true => the page is loading
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Use effect with params.id 
+  useEffect(() => {
+    const fetchUserInTeam = async () => {
+      try {
+        // asking the backend with the :id = params.id
+        const fetchingData = await getPlayersInTeam({teamId: params.id});
+        const fetchDataTeam = await getTeam({teamId: params.id});
+        // user team
+        setDataUsersInTeam(fetchingData);
+        setTeamInfo(fetchDataTeam);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchUserInTeam();
+  }, [params.id]);
+
+
+  
+
   return (
     <section className="bg-[url('/images/stardewbackground.png')] bg-cover bg-center py-9">
       <h1 className="font-Mitr text-frappe text-3xl lg:text-5xl text-center my-3">
-        Team {params.id}
+        Team {teamInfo.name}
       </h1>
       <div className="bg-chocolate w-[75%] lg:w-[80%] mx-auto p-3 rounded-2xl">
         <div className="mb-6">
@@ -21,30 +54,23 @@ function Team() {
           </div>
 
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-18 justify-center items-center">
-            <Card
-              infoCTA="See profile"
-              name="Player1"
-              info="Team captain"
-              photo="/images/Flowey_battle_winking.webp"
-              linkToCTA="/profile/Player1"
-              size="sm"
-            />
-            <Card
-              infoCTA="See profile"
-              name="Player2"
-              info="Teammate"
-              photo="/images/Undyne_overworld_epilogue.webp"
-              linkToCTA="/profile/Player2"
-              size="sm"
-            />
-            <Card
-              infoCTA="See profile"
-              name="Player3"
-              info="Teammate"
-              photo="/images/Flowey_battle_winking.webp"
-              linkToCTA="/profile/Player3"
-              size="sm"
-            />
+            {!isLoading ? (
+              dataUsersInTeam.map((teammate) => {
+                return (
+                  <Card
+                    infoCTA="See profile"
+                    name={teammate.firstname + teammate.lastname}
+                    info={teammate.role}
+                    photo={teammate?.avatar || "/images/Flowey_battle_winking.webp"}
+                    linkToCTA={`/users/${teammate._id}`}
+                    size="sm"
+                    id={teammate.id}
+                  />
+                );
+              })
+            ) : (
+              <Spinner />
+            )}
           </div>
         </div>
 
