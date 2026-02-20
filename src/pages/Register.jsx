@@ -39,12 +39,12 @@ function Register() {
   return (
     <section className="bg-[url('/images/tunicbg.jpg')] bg-cover bg-center py-9 min-h-[90vh]">
       {successMessage && (
-        <div className="bg-green-500 text-light p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+        <div className="bg-matcha text-light p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
           {successMessage}
         </div>
       )}
       {errorMessage && (
-        <div className="bg-red-500 text-white p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+        <div className="bg-red-800 text-light p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
           {errorMessage}
         </div>
       )}
@@ -58,30 +58,32 @@ function Register() {
           </h1>
         </div>
         <form onSubmit={handleRegister}>
-          <div className="flex flex-col lg:flex-row">
+          <div className="flex flex-col lg:grid lg:grid-cols-10 lg:gap-2 justify-center items-center">
             <label htmlFor="firstname" className="m-2 text-frappe">
-              First name
+              Firstname
             </label>
             <input
               type="text"
               id="firstname"
               name="firstname"
               value={firstname}
-              className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              className="bg-light rounded-xl p-4 m-2 text-chocolate lg:col-start-2 lg:col-span-4"
+              placeholder="Your firstname"
               onChange={(event) => {
                 setFirstname(event.target.value);
               }}
               required
             />
-            <label htmlFor="lastname" className="m-2 text-frappe">
-              Last name
+            <label htmlFor="lastname" className="m-2 text-frappe lg:col-start-6">
+              Lastname
             </label>
             <input
               type="text"
               id="lastname"
               name="lastname"
               value={lastname}
-              className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              className="bg-light rounded-xl p-4 m-2 text-chocolate lg:col-start lg:col-span-4"
+              placeholder="Your lastname"
               onChange={(event) => {
                 setLastname(event.target.value);
               }}
@@ -98,6 +100,7 @@ function Register() {
               name="email"
               value={email}
               className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              placeholder="email@email.com"
               onChange={(event) => {
                 setEmail(event.target.value);
               }}
@@ -114,6 +117,7 @@ function Register() {
               id="password"
               value={password}
               className="bg-light rounded-xl p-4 m-2 text-chocolate"
+              placeholder="xxxxxx"
               onChange={(event) => {
                 setPassword(event.target.value);
               }}
