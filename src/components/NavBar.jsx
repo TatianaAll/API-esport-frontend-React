@@ -38,7 +38,7 @@ function NavBar() {
         </li>
         {isLogged ? (
           <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
-            <Link to={`#`}>My profile</Link>
+            <Link to={`/profile/${currentUser}`}>My profile</Link>
           </li>) : ( "" )}
         <li className="hidden lg:block">
           <LoginButton buttonWidth="100%" />
@@ -74,8 +74,8 @@ function NavBar() {
               <Link to={`/teams`}>Teams</Link>
             </li>
             {isLogged ? (
-            <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
-              <Link to={`#`}>My profile</Link>
+            <li className="px-8 py-4 text-chocolate text-md">
+              <Link to={`/profile/${currentUser}`}>My profile</Link>
             </li>) : ( "" )}
             <li>
               <LoginButton buttonWidth="70%" />

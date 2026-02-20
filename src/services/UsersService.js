@@ -3,7 +3,7 @@ import { callApiBackend } from "./callApiBackend";
 
 // Login : to call the backend i need ...../users/login
 export const oneUser = ({userId}) => {
-  return callApiBackend.get("/users/show/:id"), {userId};
+  return callApiBackend.get(`/users/show/${userId}`);
 };
 
 export const allUsers = () => {

@@ -9,7 +9,6 @@ import { getTeam } from "../services/TeamsService";
 function Team() {
   // get the params from the url
   let params = useParams();
-  console.log(params.id)
 
   const [dataUsersInTeam, setDataUsersInTeam] = useState([]);
   const [teamInfo, setTeamInfo] = useState([]);
@@ -33,8 +32,6 @@ function Team() {
     };
     fetchUserInTeam();
   }, [params.id]);
-
-
   
 
   return (
@@ -62,9 +59,9 @@ function Team() {
                     name={teammate.firstname + teammate.lastname}
                     info={teammate.role}
                     photo={teammate?.avatar || "/images/Flowey_battle_winking.webp"}
-                    linkToCTA={`/users/${teammate._id}`}
+                    linkToCTA={`/profile/${teammate._id}`}
                     size="sm"
-                    id={teammate.id}
+                    id={teammate._id}
                   />
                 );
               })

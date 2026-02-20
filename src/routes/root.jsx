@@ -8,6 +8,7 @@ import Teams from "../pages/Teams";
 import Team from "../pages/Team";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Profile from "../pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: "/tournaments", element: <Tournaments /> },
       { path: "/teams", element: <Teams /> },
       { path: "/team/:id", element: <Team /> },
+      { path: "/profile/:id", element: <Profile /> },
     ],
   },
 ]);
