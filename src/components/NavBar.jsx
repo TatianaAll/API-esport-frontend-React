@@ -1,8 +1,8 @@
 import Title from "./Title";
-import CTA from "./CTA";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import { useState } from "react";
+import LoginButton from "./LoginButton";
 
 function NavBar() {
   // useState start false -> my nav bar is not open
@@ -32,7 +32,7 @@ function NavBar() {
           <Link to={`/teams`}>Teams</Link>
         </li>
         <li className="hidden lg:block">
-          <CTA text="Login" buttonWidth="100%" linkTo="/login" />
+          <LoginButton buttonWidth="100%" />
         </li>
 
         {/* Menu burger for mobile */}
@@ -65,7 +65,7 @@ function NavBar() {
                 <Link to={`/teams`}>Teams</Link>
               </li>
               <li>
-                <CTA text="Login" buttonWidth="70%" linkTo="/login" />
+                <LoginButton buttonWidth="70%"/>
               </li>
             </ul>
         </li>

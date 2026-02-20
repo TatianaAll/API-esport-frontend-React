@@ -17,16 +17,11 @@ axios({
 });
 */
 
-// Logout
-export const logout = () => {
-  return callApiBackend.post("/users/logout");
-};
-
 export const register = (firstname, lastname, email, password) => {
   return callApiBackend.post("/users/signup", {
     firstname,
     lastname,
     email,
-    password
-  })
-}
+    password,
+  });
+};

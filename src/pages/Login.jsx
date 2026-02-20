@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../services/AuthenticationService";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import CurrentUserContext from "../context/CurrentUserContext";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,9 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const redirectWhenLoginSuccessfully = useNavigate();
+
+  // Use useContext to set the current user
+  const { setCurrentUser } = useContext(CurrentUserContext);
 
   let handleLogin = async (event) => {
     // Prevent default = no submission
@@ -25,6 +29,8 @@ function Login() {
       localStorage.setItem("cosy_games_token", userData.token);
       if (userData) {
         setSuccessMessage("Welcome !");
+        // Set the user logged
+        setCurrentUser(userData);
         // Message + timeout before redirection
         setTimeout(() => {
           redirectWhenLoginSuccessfully("/");
