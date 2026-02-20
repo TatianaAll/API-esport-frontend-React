@@ -39,7 +39,7 @@ function Teams() {
       <section className="relative z-10 py-5">
         <ResearchBar />
       </section>
-      <section className="relative z-10">
+      <section className="relative z-10 py-5">
         <div className="bg-latte w-[75%] mx-auto p-8 rounded-2xl mt-5">
           <div className="flex justify-center items-center gap-4 mb-4">
             <div className="w-[10%] lg:w-[5%]">
