@@ -9,3 +9,7 @@ export const allTeams = () => {
 export const lastTournament = () => {
   return callApiBackend.get("/teams/latest");
 }
+
+export const searchTeams = (search) => {
+  return callApiBackend.get("/teams/search", { search });
+}

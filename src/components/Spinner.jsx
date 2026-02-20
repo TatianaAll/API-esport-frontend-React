@@ -2,8 +2,8 @@ import React from "react";
 
 function Spinner() {
   return (
-    <div>
-      <img src="images/spinner" alt="wainting spinner" />
+    <div className="mx-auto w-[50%] block">
+      <img src="/images/spinner.gif" alt="wainting spinner" className="w-full block" />
     </div>
   );
 }

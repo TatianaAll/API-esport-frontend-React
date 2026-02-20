@@ -6,14 +6,15 @@ import Spinner from "../components/Spinner";
 
 function Teams() {
   const [dataTeams, setDataTeams] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // isLoading starting at true => the page is loading
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchTeams = async () => {
       try {
         const fetchingData = await allTeams();
         setDataTeams(fetchingData);
-        setLoading(true);
+        setIsLoading(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -53,13 +54,13 @@ function Teams() {
             </h3>
           </div>
           <div className="flex flex-col lg:flex-row justify-center gap-4">
-            {loading ? (
+            {!isLoading ? (
               last3TeamsRegistered.map((team) => {
                 return (
                   <Card
                     infoCTA="Voir plus"
                     name={team.name}
-                    info={new Date(team.creation_date).toLocaleDateString('FR-fr')}
+                    info={new Date(team.creation_date).toLocaleDateString("FR-fr",)}
                     photo="/images/stardew-valley.jpg"
                     linkToCTA={`/team/${team._id}`}
                   />

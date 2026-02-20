@@ -7,7 +7,8 @@ import Spinner from "../components/Spinner";
 function Tournaments() {
   // useState = void array at first, complete with the async call of the backend
   const [dataTournaments, setDataTournaments] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // isLoading: the page is loading at first so start at true
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchTournaments = async () => {
@@ -15,7 +16,7 @@ function Tournaments() {
         // Fetching all the tournaments
         const fetchingData = await allTournaments(); // fetch the data
         setDataTournaments(fetchingData); // save the data in the useState
-        setLoading(true); // end of load
+        setIsLoading(false); // end of load
       } catch (error) {
         console.log(error.message);
       }
@@ -64,7 +65,7 @@ function Tournaments() {
               Last tournament
             </h3>
           </div>
-          {loading ? (
+          {!isLoading ? (
             <div
               key={lastTournament._id}
               className="w-[80%] lg:w-[60%] mt-4 mx-auto"
@@ -98,7 +99,7 @@ function Tournaments() {
           </h3>
         </div>
         <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-4 px-3">
-          {loading ? (
+          {!isLoading ? (
             upcommingTournaments.map((tournament) => {
               return (
                 <div
@@ -134,7 +135,7 @@ function Tournaments() {
           </h3>
         </div>
         <div className="flex flex-col lg:flex-row gap-4 justify-center items-center px-3">
-          {loading ? (
+          {!isLoading ? (
             endedTournaments.map((tournament) => {
               return (
                 <div
