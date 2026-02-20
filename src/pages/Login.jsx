@@ -27,10 +27,11 @@ function Login() {
       let userData = await login(email, password);
       // localStorage for the JWT
       localStorage.setItem("cosy_games_token", userData.token);
+      localStorage.setItem("cosy_games_user", JSON.stringify(userData));
       if (userData) {
         setSuccessMessage("Welcome !");
         // Set the user logged
-        setCurrentUser(userData);
+        setCurrentUser(userData.email);
         // Message + timeout before redirection
         setTimeout(() => {
           redirectWhenLoginSuccessfully("/");
