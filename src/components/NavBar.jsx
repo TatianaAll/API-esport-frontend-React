@@ -17,7 +17,9 @@ function NavBar() {
       <ul className="flex justify-between items-center px-8">
         {/* Import title with the component */}
         <li>
-          <Title mainTitle="Cosy Games" subtitle="tournaments" size="small" />
+          <Link to={`/`}>
+            <Title mainTitle="Cosy Games" subtitle="tournaments" size="small" />
+          </Link>
         </li>
 
         <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
