@@ -6,6 +6,8 @@ import CurrentUserContext from "../context/CurrentUserContext";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // Adding a confirmation password
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   // Message of success or error
   const [successMessage, setSuccessMessage] = useState("");
@@ -19,6 +21,11 @@ function Login() {
   let handleLogin = async (event) => {
     // Prevent default = no submission
     event.preventDefault();
+
+    if (password !== passwordConfirmation) {
+      setErrorMessage("Passwords do not match");
+      return; // stop la fonction
+    }
 
     try {
       // waiting the response of the backend
@@ -98,6 +105,23 @@ function Login() {
               value={password}
               onChange={(event) => {
                 setPassword(event.target.value);
+              }}
+              required
+            />
+            <label
+              htmlFor="passwordConfirmation"
+              className="m-2 text-chocolate"
+            >
+              Confirm password
+            </label>
+            <input
+              type="password"
+              name="passwordConfirmation"
+              id="passwordConfirmation"
+              className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
+              value={passwordConfirmation}
+              onChange={(event) => {
+                setPasswordConfirmation(event.target.value);
               }}
               required
             />
