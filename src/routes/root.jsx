@@ -9,6 +9,8 @@ import Team from "../pages/Team";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
+import TournamentForm from "../pages/TournamentForm";
+import GameForm from "../pages/GameForm";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,8 @@ const router = createBrowserRouter([
       { path: "/teams", element: <Teams /> },
       { path: "/team/:id", element: <Team /> },
       { path: "/profile/:id", element: <Profile /> },
+      { path: "/create/tournament", element: <TournamentForm /> },
+      { path: "create/game", element: <GameForm /> },
     ],
   },
 ]);

@@ -52,7 +52,9 @@ function Tournaments() {
         />
       </div>
       <section className="pt-5 relative z-10">
+        <CTA text="Create new tournament" buttonWidth="20%" linkTo="/create/tournament" />
         <div className="bg-latte w-[80%] lg:w-[40%] mx-auto p-8 rounded-2xl">
+
           <div className="flex justify-center items-center gap-4 mb-4">
             <div className="w-[7%] lg:w-[5%]">
               <img

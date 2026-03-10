@@ -3,9 +3,14 @@ import { callApiBackend } from "./callApiBackend";
 
 // Login : to call the backend i need ...../users/login
 export const allTournaments = () => {
-  return callApiBackend.get("/tournaments");
+  return callApiBackend.get("/tournaments/");
 };
 
 export const lastTournament = () => {
   return callApiBackend.get("/tournaments/latest");
+}
+
+// create a new tournament
+export const createTournament = () => {
+  return callApiBackend.post("/tournaments/")
 }

@@ -1,7 +1,7 @@
 // Need to call my backend's API
 import { callApiBackend } from "./callApiBackend";
 
-// Login : to call the backend i need ...../users/login
+// Login : to call the backend i need /users/login and i need the email and the password
 export const login = (email, password) => {
   return callApiBackend.post("/users/login", { email, password });
 };
