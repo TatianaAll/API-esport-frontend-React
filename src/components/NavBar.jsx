@@ -27,17 +27,17 @@ function NavBar() {
           </Link>
         </li>
 
-        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
+        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg hover:underline">
           <Link to={`/`}>Home</Link>
         </li>
-        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
+        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg hover:underline">
           <Link to={`/tournaments`}>Tournaments</Link>
         </li>
-        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
+        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg hover:underline">
           <Link to={`/teams`}>Teams</Link>
         </li>
         {isLogged ? (
-          <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg">
+          <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg hover:underline">
             <Link to={`/profile/${currentUser}`}>My profile</Link>
           </li>) : ( "" )}
         <li className="hidden lg:block">
