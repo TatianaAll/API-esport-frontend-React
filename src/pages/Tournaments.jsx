@@ -73,7 +73,7 @@ function Tournaments() {
               className="w-[80%] lg:w-[60%] mt-4 mx-auto"
             >
               <Card
-                infoCTA="Voir plus"
+                infoCTA="See more"
                 name={lastTournament.name}
                 info={new Date(lastTournament.start_date).toLocaleDateString(
                   "FR-fr",
@@ -109,7 +109,7 @@ function Tournaments() {
                   className="w-[80%] lg:w-[60%] mt-4 mx-auto"
                 >
                   <Card
-                    infoCTA="Voir plus"
+                    infoCTA="See more"
                     name={tournament.name}
                     info={new Date(tournament.start_date).toLocaleDateString(
                       "FR-fr",
@@ -145,7 +145,7 @@ function Tournaments() {
                   className="w-[80%] lg:w-[60%] mt-4 mx-auto"
                 >
                   <Card
-                    infoCTA="Voir plus"
+                    infoCTA="See more"
                     name={tournament.name}
                     info={new Date(tournament.start_date).toLocaleDateString(
                       "FR-fr",
