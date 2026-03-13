@@ -2,7 +2,6 @@ import InputTextForm from "../components/InputTextForm";
 import SubmitButton from "../components/SubmitButton";
 import { useNavigate } from "react-router-dom";
 import { createGame } from "../services/GamesService";
-import CurrentUserContext from "../context/CurrentUserContext";
 import { useState } from "react";
 
 function GameForm() {

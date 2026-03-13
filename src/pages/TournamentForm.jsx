@@ -1,25 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputTextForm from "../components/InputTextForm";
 import SubmitButton from "../components/SubmitButton";
 import { createTournament } from "../services/TournamentsService";
 import { useNavigate } from "react-router-dom";
+import { allGames } from "../services/GamesService";
+import Spinner from "../components/Spinner";
 
 function TournamentForm() {
-  // One unique object {name, placeName, etc.} with the data for the forms
+  // One unique object {name, place_name, etc.} with the data for the forms
   const [dataTournament, setDataTournament] = useState({
     name: "",
-    placeName: "",
-    capacity: "",
-    startDate: "",
-    endDate: "",
+    place_name: "",
+    capacity: 0,
+    start_date: "",
+    end_date: "",
     status: "",
-    game: "",
+    specialized_game: "",
   });
 
   // state for display message
   const [message, setMessage] = useState("");
 
   const redirectWhenTournamentCreated = useNavigate();
+  const [allGamesData, setallGamesData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Calling all the games from the backend
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const fetchingGames = await allGames();
+        setallGamesData(fetchingGames);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchGames();
+  }, []);
+
+  const token = localStorage.getItem("cosy_games_token");
 
   // function to send to the backend
   let handleTournament = async (event) => {
@@ -29,12 +49,13 @@ function TournamentForm() {
     try {
       let newTournament = await createTournament(
         dataTournament.name,
-        dataTournament.placeName,
+        dataTournament.place_name,
         dataTournament.capacity,
-        dataTournament.startDate,
-        dataTournament.endDate,
+        dataTournament.start_date,
+        dataTournament.end_date,
         dataTournament.status,
-        dataTournament.game,
+        dataTournament.specialized_game,
+        token
       );
       console.log(newTournament);
       if (newTournament.message == "Ajout du tournoi enregistré !") {
@@ -64,21 +85,27 @@ function TournamentForm() {
             nameInput={"nameTournament"}
             labelName={"Tournament name"}
             onChange={(event) => {
-              setDataTournament.name(event.target.value);
+              setDataTournament({
+                ...dataTournament,
+                name: event.target.value,
+              });
             }}
           />
 
           <InputTextForm
-            nameInput={"placeName"}
+            nameInput={"place_name"}
             labelName={"Tournament place"}
             onChange={(event) => {
-              setDataTournament.placeName(event.target.value);
+              setDataTournament({
+                ...dataTournament,
+                place_name: event.target.value,
+              });
             }}
           />
 
           <div className="flex flex-col py-1">
             <label
-              htmlFor="tournamentCapacity"
+              htmlFor="capacity"
               className="text-chocolate text-xl"
             >
               Capacity
@@ -86,39 +113,48 @@ function TournamentForm() {
             <input
               type="number"
               name="capacity"
-              id="tournamentCapacity"
+              id="capacity"
               onChange={(event) => {
-                setDataTournament.capacity(event.target.value);
+                setDataTournament({
+                  ...dataTournament,
+                  capacity: Number(event.target.value),
+                });
               }}
               className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
             />
           </div>
 
           <div className="flex flex-col py-1">
-            <label htmlFor="startDate" className="text-chocolate text-xl">
+            <label htmlFor="start_date" className="text-chocolate text-xl">
               Start date
             </label>
             <input
               type="datetime-local"
-              name="startDate"
-              id="startDate"
+              name="start_date"
+              id="start_date"
               onChange={(event) => {
-                setDataTournament.startDate(event.target.value);
+                setDataTournament({
+                  ...dataTournament,
+                  start_date: event.target.value,
+                });
               }}
               className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
             />
           </div>
 
           <div className="flex flex-col py-1">
-            <label htmlFor="endDate" className="text-chocolate text-xl">
+            <label htmlFor="end_date" className="text-chocolate text-xl">
               End date
             </label>
             <input
               type="datetime-local"
-              name="endDate"
-              id="endDate"
+              name="end_date"
+              id="end_date"
               onChange={(event) => {
-                setDataTournament.endDate(event.target.value);
+                setDataTournament({
+                  ...dataTournament,
+                  end_date: event.target.value,
+                });
               }}
               className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
             />
@@ -128,7 +164,18 @@ function TournamentForm() {
             <label htmlFor="status" className="text-chocolate text-xl">
               Status
             </label>
-            <select name="status" id="status">
+            <select
+              name="status"
+              id="status"
+              onChange={(event) => {
+                setDataTournament({
+                  ...dataTournament,
+                  status: event.target.value,
+                });
+              }}
+              value={dataTournament.status}
+              className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
+            >
               <option value="" selected disabled>
                 ----Status----
               </option>
@@ -140,22 +187,36 @@ function TournamentForm() {
           </div>
 
           <div className="flex flex-col py-1">
-            <label htmlFor="game" className="text-chocolate text-xl">
+            <label htmlFor="specialized_game" className="text-chocolate text-xl">
               Game
             </label>
-            <select name="game" id="game">
+            <select
+              name="specialized_game"
+              id="specialized_game"
+              onChange={(event) => {
+                setDataTournament({
+                  ...dataTournament,
+                  specialized_game: event.target.value,
+                });
+              }}
+              className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
+            >
               <option value="" selected disabled>
                 ----Chose the game----
               </option>
-              <option value="animal crossing new leaf">
-                Animal Crossing - New Leaf
-              </option>
-              <option value="stardew valley">Stardew valley</option>
-              <option value="tunic">Tunic</option>
-              <option value="unpacking">Unpacking</option>
+              {!isLoading ? (
+                allGamesData.map((game) => {
+                  return (
+                    <option key={game._id} value={game._id}>
+                      {game.name}
+                    </option>
+                  );
+                })
+              ) : (
+                <option disabled>Loading games...</option>
+              )}
             </select>
           </div>
-
           <SubmitButton />
         </form>
       </div>
