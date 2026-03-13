@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CTA from "../components/CTA";
 import Card from "../components/Card";
 import { allTournaments } from "../services/TournamentsService";
 import Spinner from "../components/Spinner";
+import CurrentUserContext from "../context/CurrentUserContext";
 
 function Tournaments() {
   // useState = void array at first, complete with the async call of the backend
   const [dataTournaments, setDataTournaments] = useState([]);
   // isLoading: the page is loading at first so start at true
   const [isLoading, setIsLoading] = useState(true);
+  const { currentUser } = useContext(CurrentUserContext);
+  const isLogged = currentUser !== null;
 
   useEffect(() => {
     const fetchTournaments = async () => {
@@ -52,12 +55,25 @@ function Tournaments() {
         />
       </div>
       <section className="pt-5 relative z-10">
-        <div className="my-5">
-          <CTA text="Create new tournament" buttonWidth="20%" linkTo="/create/tournament" />
-        </div>
-        
-        <div className="bg-latte w-[80%] lg:w-[40%] mx-auto p-8 rounded-2xl">
+        {isLogged ? (
+          <div className="my-5">
+            <CTA
+              text="Create new tournament"
+              buttonWidth="20%"
+              linkTo="/create/tournament"
+            />
+          </div>
+        ) : (
+          <div className="my-5">
+            <CTA
+              text="Connexion needed to add tournament"
+              buttonWidth="40%"
+              linkTo="/login"
+            />
+          </div>
+        )}
 
+        <div className="bg-latte w-[80%] lg:w-[40%] mx-auto p-8 rounded-2xl">
           <div className="flex justify-center items-center gap-4 mb-4">
             <div className="w-[7%] lg:w-[5%]">
               <img
