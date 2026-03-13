@@ -34,7 +34,7 @@ function Tournaments() {
     .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))[0];
 
   const upcommingTournaments = dataTournaments
-    .filter((upcomming) => upcomming.status == "Programmed")
+    .filter((upcomming) => upcomming.status == "programmed")
     .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
     .slice(0, 2);
 
@@ -42,7 +42,8 @@ function Tournaments() {
     // filter with the tournament with the status = ended
     .filter((filter) => filter.status === "ended")
     // sort by date and select only the first (the newest finished tournament)
-    .sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
+    .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
+    .slice(0, 3);
 
   return (
     <div className="relative">
