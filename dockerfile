@@ -1,0 +1,22 @@
+# Build react
+FROM node:25.1.0-alpine as build
+WORKDIR /app
+
+# Création des packages dans l'image
+COPY package.json ./
+COPY package-lock.json ./
+# Installation des dépendances
+RUN npm install
+
+# Création du dossier
+COPY . .
+RUN npm run build
+
+# Étape 2 : serveur web nginx
+FROM nginx:alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
