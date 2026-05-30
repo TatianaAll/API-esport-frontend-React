@@ -18,27 +18,33 @@ function Tournaments() {
       try {
         // Fetching all the tournaments
         const fetchingData = await allTournaments(); // fetch the data
-        setDataTournaments(fetchingData); // save the data in the useState
+        setDataTournaments(fetchingData?.data || []); // save the data in the useState
         setIsLoading(false); // end of load
       } catch (error) {
         console.log(error.message);
+        setDataTournaments([]);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchTournaments();
   }, []);
 
-  const lastTournament = dataTournaments
+  // check if the tournaments are in an array
+  const tournaments = Array.isArray(dataTournaments) ? dataTournaments : [];
+
+  const lastTournament = tournaments
     // filter with the tournament with the status = ended
     .filter((filter) => filter.status === "ended")
     // sort by date and select only the first (the newest finished tournament)
     .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))[0];
 
-  const upcommingTournaments = dataTournaments
+  const upcommingTournaments = tournaments
     .filter((upcomming) => upcomming.status == "programmed")
     .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
     .slice(0, 2);
 
-  const endedTournaments = dataTournaments
+  const endedTournaments = tournaments
     // filter with the tournament with the status = ended
     .filter((filter) => filter.status === "ended")
     // sort by date and select only the first (the newest finished tournament)
@@ -55,24 +61,25 @@ function Tournaments() {
           className="w-full h-full object-cover opacity-30"
         />
       </div>
+
       <section className="pt-5 relative z-10">
-        {isLogged ? (
-          <div className="my-5">
+        <div className="my-5">
+          {isLogged ? (
             <CTA
               text="Create new tournament"
               buttonWidth="20%"
               linkTo="/create/tournament"
             />
-          </div>
-        ) : (
-          <div className="my-5">
-            <CTA
-              text="Connexion needed to add tournament"
-              buttonWidth="40%"
-              linkTo="/login"
-            />
-          </div>
-        )}
+          ) : (
+            <div className="my-5">
+              <CTA
+                text="Connexion needed to add tournament"
+                buttonWidth="40%"
+                linkTo="/login"
+              />
+            </div>
+          )}
+        </div>
 
         <div className="bg-latte w-[80%] lg:w-[40%] mx-auto p-8 rounded-2xl">
           <div className="flex justify-center items-center gap-4 mb-4">
@@ -87,7 +94,9 @@ function Tournaments() {
               Last tournament
             </h3>
           </div>
-          {!isLoading ? (
+          {isLoading ? (
+            <Spinner />
+          ) : lastTournament ? (
             <div
               key={lastTournament._id}
               className="w-[80%] lg:w-[60%] mt-4 mx-auto"
@@ -103,10 +112,11 @@ function Tournaments() {
               />
             </div>
           ) : (
-            <Spinner />
+            <p className="text-center">Pas de tournois terminé pour le moment</p>
           )}
         </div>
       </section>
+
       <section className="my-5 py-5 relative z-10">
         <div className="flex justify-center items-center gap-4 mb-4">
           <div className="w-[7%] lg:w-[3%]">
@@ -121,15 +131,16 @@ function Tournaments() {
           </h3>
         </div>
         <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-4 px-3">
-          {!isLoading ? (
+          {isLoading  ? (
+            <Spinner />
+          ) : upcommingTournaments.length > 0 ? (
             upcommingTournaments.map((tournament) => {
               return (
                 <div
                   key={tournament._id}
-                  className="w-[80%] lg:w-[60%] mt-4 mx-auto"
-                >
+                  className="w-[80%] lg:w-[60%] mt-4 mx-auto">
                   <Card
-                    infoCTA="See more"
+                    infoCTA="Voir plus"
                     name={tournament.name}
                     info={new Date(tournament.start_date).toLocaleDateString(
                       "FR-fr",
@@ -141,10 +152,10 @@ function Tournaments() {
               );
             })
           ) : (
-            <Spinner />
+            <p className="text-center">Pas de tournoi prévu pour le moment</p>
           )}
         </div>
-        <CTA text="See all" buttonWidth="20%" linkTo="#" />
+        <CTA text="Voir tous" buttonWidth="20%" linkTo="#" />
       </section>
 
       <section className="mt-5 py-5 relative z-10">
@@ -157,7 +168,9 @@ function Tournaments() {
           </h3>
         </div>
         <div className="flex flex-col lg:flex-row gap-4 justify-center items-center px-3">
-          {!isLoading ? (
+          {isLoading ? (
+            <Spinner />
+          ) : endedTournaments.length > 0 ? (
             endedTournaments.map((tournament) => {
               return (
                 <div
@@ -177,7 +190,7 @@ function Tournaments() {
               );
             })
           ) : (
-            <Spinner />
+            <p className="text-center">Pas de tournoi à venir pour le moment</p>
           )}
         </div>
         <CTA text="See all" buttonWidth="20%" linkTo="#" />
