@@ -6,8 +6,6 @@ import CurrentUserContext from "../context/CurrentUserContext";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // Adding a confirmation password
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   // Message of success or error
   const [successMessage, setSuccessMessage] = useState("");
@@ -21,11 +19,6 @@ function Login() {
   let handleLogin = async (event) => {
     // Prevent default = no submission
     event.preventDefault();
-
-    if (password !== passwordConfirmation) {
-      setErrorMessage("Passwords do not match");
-      return; // stop la fonction
-    }
 
     try {
       // waiting the response of the backend
@@ -90,8 +83,7 @@ function Login() {
               onChange={(event) => {
                 setEmail(event.target.value);
               }}
-              required
-            />
+              required />
           </div>
           <div className="flex flex-col">
             <label htmlFor="password" className="m-2 text-chocolate">
@@ -106,36 +98,16 @@ function Login() {
               onChange={(event) => {
                 setPassword(event.target.value);
               }}
-              required
-            />
-            <label
-              htmlFor="passwordConfirmation"
-              className="m-2 text-chocolate"
-            >
-              Confirm password
-            </label>
-            <input
-              type="password"
-              name="passwordConfirmation"
-              id="passwordConfirmation"
-              className="bg-light rounded-xl p-3 lg:p-4 m-2 text-chocolate"
-              value={passwordConfirmation}
-              onChange={(event) => {
-                setPasswordConfirmation(event.target.value);
-              }}
-              required
-            />
+              required />
             <Link
               to="#"
-              className="text-end text-matcha hover:text-chocolate duration-300 ease-in mx-2 text-sm lg:text-md mb-3"
-            >
+              className="text-end text-matcha hover:text-chocolate duration-300 ease-in mx-2 text-sm lg:text-md mb-3">
               Fogot password ?
             </Link>
           </div>
           <button
             className="text-light bg-matcha mx-auto rounded-2xl p-2 shadow-md w-28 block hover:bg-chocolate hover:text-latte duration-300 ease-in my-4"
-            formAction="submit"
-          >
+            formAction="submit">
             Login
           </button>
         </div>
@@ -143,8 +115,7 @@ function Login() {
           Not registred yet ?
           <Link
             to="/register"
-            className="text-matcha hover:text-chocolate duration-300 ease-in ms-1"
-          >
+            className="text-matcha hover:text-chocolate duration-300 ease-in ms-1">
             Create an account
           </Link>
         </p>
