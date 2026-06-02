@@ -13,12 +13,12 @@ function App() {
 
   return (
     <>
-      <CurrentUserContext value={{ currentUser, setCurrentUser }}>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <NavBar />
         <div className="h-min-[90vh]">
           <Outlet />
         </div>
-      </CurrentUserContext>
+      </CurrentUserContext.Provider>
       <Footer />
     </>
   );

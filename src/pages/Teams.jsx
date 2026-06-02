@@ -58,7 +58,7 @@ function Teams() {
               last3TeamsRegistered.map((team) => {
                 return (
                   <Card
-                    infoCTA="Voir plus"
+                    infoCTA="See all"
                     name={team.name}
                     info={new Date(team.creation_date).toLocaleDateString("FR-fr",)}
                     photo="/images/stardew-valley.jpg"

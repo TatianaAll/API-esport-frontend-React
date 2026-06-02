@@ -19,17 +19,27 @@ function Carousel({ items = [] }) {
   };
 
   return (
-    <div className="relative w-full">
-      {/* Boutons */}
-      <button onClick={prev} className="absolute left-0 z-10">
+    <div className="w-full max-w-300 mx-auto bg-latte rounded-2xl shadow-md p-6 relative">
+
+      {/* Bouton gauche */}
+      <button
+        onClick={prev}
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10
+        bg-chocolate text-white hover:scale-110
+        w-9 h-9 rounded-full flex items-center justify-center
+        transition duration-200 shadow-md">
         ◀
       </button>
 
-      <div className="flex gap-4 overflow-hidden justify-center">
+      {/* Carousel */}
+      <div className="flex gap-5 justify-center overflow-hidden">
         {visibleItems.map((item) => (
-          <div key={item._id} className="w-[18%]">
+          <div
+            key={item._id}
+            className="w-45 shrink-0 transition duration-300 hover:scale-105"
+          >
             <Card
-              infoCTA="Voir plus"
+              infoCTA="See all"
               name={item.name}
               info={new Date(item.start_date).toLocaleDateString("fr-FR")}
               photo={item.photo || "/images/stardew-valley.jpg"}
@@ -39,7 +49,13 @@ function Carousel({ items = [] }) {
         ))}
       </div>
 
-      <button onClick={next} className="absolute right-0 z-10">
+      {/* Bouton droit */}
+      <button
+        onClick={next}
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10
+        bg-chocolate text-white hover:scale-110
+        w-9 h-9 rounded-full flex items-center justify-center
+        transition duration-200 shadow-md">
         ▶
       </button>
     </div>
