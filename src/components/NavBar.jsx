@@ -16,6 +16,9 @@ function NavBar() {
     setNavIsOpen(!navIsOpen);
   };
   const isLogged = currentUser !== null;
+  // console.log(currentUser);
+  // const context = useContext(CurrentUserContext);
+  // console.log("FULL CONTEXT:", context);
 
   return (
     <nav className="bg-frappe w-full h-20 overflow-hidden">
