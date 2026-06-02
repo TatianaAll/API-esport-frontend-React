@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import { allTournaments } from "../services/TournamentsService";
 import Spinner from "../components/Spinner";
 import CurrentUserContext from "../context/CurrentUserContext";
+import Carousel from "../components/Carousel";
 
 function Tournaments() {
   // useState = void array at first, complete with the async call of the backend
@@ -18,7 +19,7 @@ function Tournaments() {
       try {
         // Fetching all the tournaments
         const fetchingData = await allTournaments(); // fetch the data
-        setDataTournaments(fetchingData?.data || []); // save the data in the useState
+        setDataTournaments(fetchingData || []); // save the data in the useState
         setIsLoading(false); // end of load
       } catch (error) {
         console.log(error.message);
@@ -112,7 +113,9 @@ function Tournaments() {
               />
             </div>
           ) : (
-            <p className="text-center">Pas de tournois terminé pour le moment</p>
+            <p className="text-center">
+              Pas de tournois terminé pour le moment
+            </p>
           )}
         </div>
       </section>
@@ -131,31 +134,15 @@ function Tournaments() {
           </h3>
         </div>
         <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-4 px-3">
-          {isLoading  ? (
+          {isLoading ? (
             <Spinner />
           ) : upcommingTournaments.length > 0 ? (
-            upcommingTournaments.map((tournament) => {
-              return (
-                <div
-                  key={tournament._id}
-                  className="w-[80%] lg:w-[60%] mt-4 mx-auto">
-                  <Card
-                    infoCTA="Voir plus"
-                    name={tournament.name}
-                    info={new Date(tournament.start_date).toLocaleDateString(
-                      "FR-fr",
-                    )}
-                    photo={tournament.photo || "/images/stardew-valley.jpg"}
-                    linkToCTA="#"
-                  />
-                </div>
-              );
-            })
+            <Carousel items={upcommingTournaments} />
           ) : (
-            <p className="text-center">Pas de tournoi prévu pour le moment</p>
+            <p className="text-center">No tournament incomming for now</p>
           )}
         </div>
-        <CTA text="Voir tous" buttonWidth="20%" linkTo="#" />
+        <CTA text="See all" buttonWidth="20%" linkTo="#" />
       </section>
 
       <section className="mt-5 py-5 relative z-10">
@@ -171,26 +158,9 @@ function Tournaments() {
           {isLoading ? (
             <Spinner />
           ) : endedTournaments.length > 0 ? (
-            endedTournaments.map((tournament) => {
-              return (
-                <div
-                  key={tournament._id}
-                  className="w-[80%] lg:w-[60%] mt-4 mx-auto"
-                >
-                  <Card
-                    infoCTA="See more"
-                    name={tournament.name}
-                    info={new Date(tournament.start_date).toLocaleDateString(
-                      "FR-fr",
-                    )}
-                    photo={tournament.photo || "/images/stardew-valley.jpg"}
-                    linkToCTA="#"
-                  />
-                </div>
-              );
-            })
+            <Carousel items={endedTournaments} />
           ) : (
-            <p className="text-center">Pas de tournoi à venir pour le moment</p>
+            <p className="text-center">No ended tournament for now</p>
           )}
         </div>
         <CTA text="See all" buttonWidth="20%" linkTo="#" />
