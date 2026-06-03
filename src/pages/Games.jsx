@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { allGames } from "../services/GamesService";
 import Spinner from "../components/Spinner";
 import Card from "../components/Card";
+import CurrentUserContext from "../context/CurrentUserContext";
+import CTA from "../components/CTA";
 
 function Games() {
   const [dataGames, setDataGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { currentUser } = useContext(CurrentUserContext);
+  const isLogged = currentUser !== null;
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -36,6 +41,24 @@ function Games() {
         <h2 className="font-Mitr text-center text-3xl text-chocolate mb-8">
           Games
         </h2>
+
+        <div className="my-5">
+          {isLogged ? (
+            <CTA
+              text="Add a game to our list"
+              buttonWidth="20%"
+              linkTo="/create/game"
+            />
+          ) : (
+            <div className="my-5">
+              <CTA
+                text="Connexion needed to add a game"
+                buttonWidth="40%"
+                linkTo="/login"
+              />
+            </div>
+          )}
+        </div>
 
         <div className="bg-latte w-[90%] lg:w-[75%] mx-auto p-6 rounded-2xl border border-[#e5dcd3]">
           {/* GRID */}
