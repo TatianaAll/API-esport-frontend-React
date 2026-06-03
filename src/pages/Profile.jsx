@@ -42,7 +42,11 @@ function Profile() {
               className="w-24 h-24 rounded-full border-2 border-latte object-cover"
             />
           ) : (
-            <div className="w-24 h-24 rounded-full bg-gray-300 border-2 border-light" />
+            <img
+              src={"/images/stardew-valley.jpg"}
+              alt="avatar"
+              className="w-24 h-24 rounded-full border-2 border-latte object-cover"
+            />
           )}
         </div>
 
