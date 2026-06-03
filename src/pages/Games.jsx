@@ -19,8 +19,8 @@ function Games() {
   const [dataNewGame, setDataNewGame] = useState({
     name: "",
     release_date: "",
-    genres: [""],
-    platforms: "",
+    genre: [""],
+    platform: "",
     publisher: "",
     max_player: 0,
     image: "",
@@ -56,17 +56,19 @@ function Games() {
     try {
       let newGame = await createGame(
         dataNewGame.name,
-        dataNewGame.place_name,
-        dataNewGame.capacity,
-        dataNewGame.start_date,
-        dataNewGame.end_date,
-        dataNewGame.status,
-        dataNewGame.specialized_game,
+        dataNewGame.release_date,
+        dataNewGame.genre,
+        dataNewGame.platform,
+        dataNewGame.publisher,
+        dataNewGame.max_player,
+        dataNewGame.image,
         token,
       );
       console.log(newGame);
-      if (newGame.message == "New game added !") {
+
+      if (newGame.message == "Ajout du jeu enregistré !") {
         setMessage("New game added");
+        setIsModalOpen(false);
         setTimeout(() => {
           setMessage("");
         }, 3000);

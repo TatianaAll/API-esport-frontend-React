@@ -13,6 +13,7 @@ export const createGame = (
   platform,
   publisher,
   max_player,
+  image,
   token,
 ) => {
   return callApiBackend.post(
