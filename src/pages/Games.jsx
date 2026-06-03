@@ -52,16 +52,14 @@ function Games() {
           {isLogged ? (
             <CTA
               text="Add a game to our list"
-              buttonWidth="20%"
-              onClick={toggleModal}
-            />
+              buttonWidth="40%"
+              onClick={toggleModal} />
           ) : (
             <div className="my-5">
               <CTA
                 text="Connexion needed to add a game"
                 buttonWidth="40%"
-                linkTo="/login"
-              />
+                linkTo="/login" />
             </div>
           )}
         </div>
@@ -84,8 +82,7 @@ function Games() {
                     photo={
                       game.image ? game.image : "/images/stardew-valley.jpg"
                     }
-                    linkToCTA="#"
-                  />
+                    linkToCTA="#" />
                 </div>
               ))
             ) : (

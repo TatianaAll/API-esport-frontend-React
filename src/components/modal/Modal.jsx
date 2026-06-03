@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+
 function Modal({ setIsModalOpen, title }) {
+  // block the scroll behind the modal
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div
       className="fixed inset-0 bg-black/40 flex justify-center items-center z-50"
