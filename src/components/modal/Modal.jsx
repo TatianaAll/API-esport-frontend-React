@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function Modal({ setIsModalOpen, title }) {
+function Modal({ setIsModalOpen, title, children }) {
   // block the scroll behind the modal
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -26,7 +26,7 @@ function Modal({ setIsModalOpen, title }) {
           {title}
         </h2>
 
-        <p className="text-sm text-center text-chocolate">Coucou</p>
+        { children } 
       </div>
     </div>
   );
