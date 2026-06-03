@@ -4,10 +4,12 @@ import Spinner from "../components/Spinner";
 import Card from "../components/Card";
 import CurrentUserContext from "../context/CurrentUserContext";
 import CTA from "../components/CTA";
+import Modal from "../components/modal/Modal";
 
 function Games() {
   const [dataGames, setDataGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { currentUser } = useContext(CurrentUserContext);
   const isLogged = currentUser !== null;
@@ -25,6 +27,10 @@ function Games() {
     };
     fetchGames();
   }, []);
+
+  const toggleModal = () => {
+    setIsModalOpen(true);
+  }
 
   return (
     <div className="relative min-h-screen">
@@ -47,7 +53,7 @@ function Games() {
             <CTA
               text="Add a game to our list"
               buttonWidth="20%"
-              linkTo="/create/game"
+              onClick={toggleModal}
             />
           ) : (
             <div className="my-5">
@@ -59,6 +65,8 @@ function Games() {
             </div>
           )}
         </div>
+
+        {isModalOpen && <Modal setIsModalOpen = {setIsModalOpen} title = "Add a game" />}
 
         <div className="bg-latte w-[90%] lg:w-[75%] mx-auto p-6 rounded-2xl border border-[#e5dcd3]">
           {/* GRID */}
