@@ -39,10 +39,16 @@ function NavBar() {
         <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg hover:underline">
           <Link to={`/teams`}>Teams</Link>
         </li>
+        <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg hover:underline">
+          <Link to={`/games`}>Games</Link>
+        </li>
         {isLogged ? (
           <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg hover:underline">
             <Link to={`/profile/${currentUser}`}>My profile</Link>
-          </li>) : ( "" )}
+          </li>
+        ) : (
+          ""
+        )}
         <li className="hidden lg:block">
           <LoginButton buttonWidth="100%" />
         </li>
@@ -76,10 +82,16 @@ function NavBar() {
             <li className="px-8 py-4 text-chocolate text-md">
               <Link to={`/teams`}>Teams</Link>
             </li>
-            {isLogged ? (
             <li className="px-8 py-4 text-chocolate text-md">
-              <Link to={`/profile/${currentUser}`}>My profile</Link>
-            </li>) : ( "" )}
+              <Link to={`/games`}>Games</Link>
+            </li>
+            {isLogged ? (
+              <li className="px-8 py-4 text-chocolate text-md">
+                <Link to={`/profile/${currentUser}`}>My profile</Link>
+              </li>
+            ) : (
+              ""
+            )}
             <li>
               <LoginButton buttonWidth="70%" />
             </li>
