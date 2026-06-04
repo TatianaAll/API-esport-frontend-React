@@ -59,6 +59,7 @@ function Team() {
                     name={teammate.firstname + teammate.lastname}
                     info={teammate.role}
                     photo={teammate?.avatar || "/images/Flowey_battle_winking.webp"}
+                    showCTA={true}
                     linkToCTA={`/profile/${teammate._id}`}
                     size="sm"
                     id={teammate._id}

@@ -108,6 +108,7 @@ function Tournaments() {
                 info={new Date(lastTournament.start_date).toLocaleDateString(
                   "FR-fr",
                 )}
+                showCTA={true}
                 photo={lastTournament.photo || "/images/stardew-valley.jpg"}
                 linkToCTA={`/tournament/${lastTournament._id}`}
               />

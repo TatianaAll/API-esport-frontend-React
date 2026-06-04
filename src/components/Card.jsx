@@ -1,6 +1,6 @@
 import CTA from "./CTA";
 
-function Card({ photo, name, info, date, size, infoCTA, linkToCTA }) {
+function Card({ photo, name, info, date, size, infoCTA, linkToCTA, showCTA }) {
   const sizes = {
     sm: "h-32",
     md: "h-48",
@@ -21,7 +21,7 @@ function Card({ photo, name, info, date, size, infoCTA, linkToCTA }) {
         </h4>
         <h5 className="text-center text-chocolate text-md">{info}</h5>
         <p>{date}</p>
-        <CTA text={`${infoCTA}`} linkTo={`${linkToCTA}`} />
+        {showCTA ? <CTA text={infoCTA} linkTo={linkToCTA} /> : null}
       </article>
     </div>
   );
