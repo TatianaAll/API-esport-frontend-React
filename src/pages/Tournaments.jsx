@@ -109,7 +109,7 @@ function Tournaments() {
                   "FR-fr",
                 )}
                 photo={lastTournament.photo || "/images/stardew-valley.jpg"}
-                linkToCTA="#"
+                linkToCTA={`/tournament/${lastTournament.id}`}
               />
             </div>
           ) : (
@@ -137,7 +137,7 @@ function Tournaments() {
           {isLoading ? (
             <Spinner />
           ) : upcommingTournaments.length > 0 ? (
-            <Carousel items={upcommingTournaments} />
+            <Carousel items={upcommingTournaments} detail="tournament" />
           ) : (
             <p className="text-center">No tournament incomming for now</p>
           )}
@@ -158,7 +158,7 @@ function Tournaments() {
           {isLoading ? (
             <Spinner />
           ) : endedTournaments.length > 0 ? (
-            <Carousel items={endedTournaments} />
+            <Carousel items={endedTournaments} detail="tournament" />
           ) : (
             <p className="text-center">No ended tournament for now</p>
           )}
