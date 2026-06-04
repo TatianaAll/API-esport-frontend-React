@@ -10,6 +10,10 @@ export const lastTournament = () => {
   return callApiBackend.get("/tournaments/latest");
 };
 
+export const specificTournament = ({tournament_id}) => {
+  return callApiBackend.get(`/tournaments/${tournament_id}`)
+}
+// router.get("/:tournament_id", TournamentsController.getTournamentById); // Get a specific tournament by its id
 // create a new tournament
 export const createTournament = (
   name,

@@ -109,7 +109,7 @@ function Tournaments() {
                   "FR-fr",
                 )}
                 photo={lastTournament.photo || "/images/stardew-valley.jpg"}
-                linkToCTA={`/tournament/${lastTournament.id}`}
+                linkToCTA={`/tournament/${lastTournament._id}`}
               />
             </div>
           ) : (

@@ -43,7 +43,7 @@ function Carousel({ items = [], detail }) {
               name={item.name}
               info={new Date(item.start_date).toLocaleDateString("fr-FR")}
               photo={item.photo || "/images/stardew-valley.jpg"}
-              linkToCTA={`/${detail}/${item.id}`}
+              linkToCTA={`/${detail}/${item._id}`}
             />
           </div>
         ))}
