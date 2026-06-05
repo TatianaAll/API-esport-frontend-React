@@ -40,7 +40,7 @@ export const createTournament = (
   );
 };
 
-export const inscriptionToTournament = (
+export const tournamentRegistration = (
   user,
   team,
   role,

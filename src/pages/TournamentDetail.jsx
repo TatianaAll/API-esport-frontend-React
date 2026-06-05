@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { specificTournament } from "../services/TournamentsService";
+import {
+  specificTournament,
+  tournamentRegistration,
+} from "../services/TournamentsService";
 import Spinner from "../components/Spinner";
 import Card from "../components/Card";
 import CTA from "../components/CTA";
 import { useContext } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
+import Modal from "../components/modal/Modal";
+import SubmitButton from "../components/SubmitButton";
 
 function TournamentDetail() {
   // paramas to get the id from URL
@@ -18,6 +23,7 @@ function TournamentDetail() {
   // User to send token + verify login
   const { currentUser } = useContext(CurrentUserContext);
   const isLogged = currentUser !== null;
+  const token = localStorage.getItem("cosy_games_token");
 
   // fetching the tournaments details from DB
   useEffect(() => {
@@ -36,6 +42,47 @@ function TournamentDetail() {
     fetchTournament();
   }, [params.tournament_id]);
 
+  // useState for the data to send to the API for registration
+  // One unique object {name, place_name, etc.} with the data for the forms
+  const [dataRegister, setDataRegister] = useState({
+    name: "",
+    team: "",
+    role: "",
+  });
+
+  // state for display message
+  const [message, setMessage] = useState("");
+  // state for the modla
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // function to send to the backend
+  let handleRegistration = async (event) => {
+    event.preventDefault();
+
+    // Try/catch to send the new data to save in the backend
+    try {
+      let newTournament = await tournamentRegistration(
+        dataRegister.name,
+        dataRegister.team,
+        dataRegister.role,
+        token,
+      );
+      console.log(newTournament);
+      if (newTournament.message == "Ajout du tournoi enregistré !") {
+        setMessage("Registration ok !");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
+      }
+    } catch (error) {
+      console.log("Impossible to register" + error.message);
+    }
+  };
+
   if (isLoading) return <Spinner />;
 
   return (
@@ -52,6 +99,11 @@ function TournamentDetail() {
         <h1 className="font-[CreamCake] text-3xl text-chocolate text-center mb-8">
           Tournament : {dataTournament.name}
         </h1>
+        {message && (
+          <div className="bg-matcha text-light p-2 rounded-xl mb-4 text-center w-[50%] mx-auto">
+            {message}
+          </div>
+        )}
 
         <div className="bg-latte w-[90%] lg:w-[70%] mx-auto p-6 rounded-2xl border border-[#e5dcd3]">
           {/* GAME */}
@@ -117,12 +169,36 @@ function TournamentDetail() {
             <CTA
               text="Join tournament"
               buttonWidth="40%"
-              linkTo={`/tournament/${dataTournament._id}/inscription`}
+              onClick={toggleModal}
             />
           ) : (
             <CTA text="Login to join" buttonWidth="40%" linkTo="/login" />
           )}
         </div>
+
+        {isModalOpen && (
+          <Modal
+            setIsModalOpen={setIsModalOpen}
+            title={`Register to ${dataTournament.name}`}
+          >
+            {/* children */}
+            <form className="flex flex-col gap-3" onSubmit={handleRegistration}>
+              <select
+                value={dataRegister.role}
+                onChange={(event) =>
+                  setDataRegister({ role: event.target.value })
+                }
+              >
+                <option value="player">Player</option>
+                <option value="coach">Coach</option>
+                <option value="staff">Staff</option>
+                <option value="jury">Jury</option>
+              </select>
+
+              <SubmitButton />
+            </form>
+          </Modal>
+        )}
 
         <section className="mt-10">
           <h2 className="text-2xl text-center text-chocolate font-Mitr mb-6">
