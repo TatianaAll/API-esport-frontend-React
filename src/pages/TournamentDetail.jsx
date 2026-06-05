@@ -41,12 +41,11 @@ function TournamentDetail() {
     };
     fetchTournament();
   }, [params.tournament_id]);
+  console.log(dataTournament);
 
   // useState for the data to send to the API for registration
   // One unique object {name, place_name, etc.} with the data for the forms
   const [dataRegister, setDataRegister] = useState({
-    name: "",
-    team: "",
     role: "",
   });
 
@@ -66,14 +65,14 @@ function TournamentDetail() {
     // Try/catch to send the new data to save in the backend
     try {
       let newTournament = await tournamentRegistration(
-        dataRegister.name,
-        dataRegister.team,
         dataRegister.role,
+        dataTournament._id,
         token,
       );
-      console.log(newTournament);
+      // console.log(newTournament);
       if (newTournament.message == "Ajout du tournoi enregistré !") {
         setMessage("Registration ok !");
+        setIsModalOpen(false);
         setTimeout(() => {
           setMessage("");
         }, 3000);
@@ -216,13 +215,13 @@ function TournamentDetail() {
 
           <div className="bg-latte w-[90%] lg:w-[70%] mx-auto p-6 rounded-2xl border border-[#e5dcd3]">
             {dataTournament.participants?.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-                {dataTournament.participants.map((p, index) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+                {dataTournament.participants.map((participant, index) => (
                   <div key={index} className="w-70">
                     <Card
                       size="sm"
-                      name={p.user?.firstname || p.team?.name || "Participant"}
-                      info={p.role}
+                      name={participant.user?.firstname || "Participant"}
+                      info={participant.team?.name}
                       photo="/images/stardew-valley.jpg"
                       showCTA={false}
                     />
