@@ -8,14 +8,18 @@ import { useContext } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
 
 function TournamentDetail() {
+  // paramas to get the id from URL
   let params = useParams();
 
+  // dataTournament ==> fetch the data from DB
   const [dataTournament, setDataTournament] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // User to send token + verify login
   const { currentUser } = useContext(CurrentUserContext);
   const isLogged = currentUser !== null;
 
+  // fetching the tournaments details from DB
   useEffect(() => {
     const fetchTournament = async () => {
       try {
@@ -106,15 +110,14 @@ function TournamentDetail() {
             </div>
           </div>
         </div>
+
         {/* Inscription */}
         <div className="mt-6 flex justify-center">
           {isLogged ? (
             <CTA
               text="Join tournament"
               buttonWidth="40%"
-              onClick={() => {
-                console.log("User wants to join");
-              }}
+              linkTo={`/tournament/${dataTournament._id}/inscription`}
             />
           ) : (
             <CTA text="Login to join" buttonWidth="40%" linkTo="/login" />
