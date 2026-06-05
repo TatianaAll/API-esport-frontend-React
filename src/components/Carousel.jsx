@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Card from "./Card";
 
-function Carousel({ items = [] }) {
+function Carousel({ items = [], detail }) {
   const [index, setIndex] = useState(0);
 
   const visibleItems = items.slice(index, index + 5);
@@ -39,11 +39,12 @@ function Carousel({ items = [] }) {
             className="w-45 shrink-0 transition duration-300 hover:scale-105"
           >
             <Card
-              infoCTA="See all"
+              infoCTA="See more"
               name={item.name}
               info={new Date(item.start_date).toLocaleDateString("fr-FR")}
               photo={item.photo || "/images/stardew-valley.jpg"}
-              linkToCTA="#"
+              showCTA={true}
+              linkToCTA={`/${detail}/${item._id}`}
             />
           </div>
         ))}

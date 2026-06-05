@@ -187,7 +187,7 @@ function Games() {
                     photo={
                       game.image ? game.image : "/images/stardew-valley.jpg"
                     }
-                    linkToCTA="#"
+                    showCTA={false}
                   />
                 </div>
               ))

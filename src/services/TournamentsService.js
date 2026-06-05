@@ -10,6 +10,10 @@ export const lastTournament = () => {
   return callApiBackend.get("/tournaments/latest");
 };
 
+export const specificTournament = ({ tournament_id }) => {
+  return callApiBackend.get(`/tournaments/${tournament_id}`);
+};
+// router.get("/:tournament_id", TournamentsController.getTournamentById); // Get a specific tournament by its id
 // create a new tournament
 export const createTournament = (
   name,
@@ -31,6 +35,24 @@ export const createTournament = (
       end_date,
       status,
       specialized_game,
+    },
+    { headers: { Authorization: `Bearer ${token}` } },
+  );
+};
+
+export const tournamentRegistration = (
+  user,
+  team,
+  role,
+  tournament_id,
+  token,
+) => {
+  return callApiBackend.patch(
+    `/tournament/${tournament_id}/register`,
+    {
+      user,
+      team,
+      role,
     },
     { headers: { Authorization: `Bearer ${token}` } },
   );

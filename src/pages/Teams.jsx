@@ -62,6 +62,7 @@ function Teams() {
                     name={team.name}
                     info={new Date(team.creation_date).toLocaleDateString("FR-fr",)}
                     photo="/images/stardew-valley.jpg"
+                    showCTA={true}
                     linkToCTA={`/team/${team._id}`}
                   />
                 );
