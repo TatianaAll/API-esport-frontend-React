@@ -163,41 +163,50 @@ function TournamentDetail() {
           </div>
         </div>
 
-        {/* Inscription */}
-        <div className="mt-6 flex justify-center">
-          {isLogged ? (
-            <CTA
-              text="Join tournament"
-              buttonWidth="40%"
-              onClick={toggleModal}
-            />
-          ) : (
-            <CTA text="Login to join" buttonWidth="40%" linkTo="/login" />
-          )}
-        </div>
+        {dataTournament.status === "programmed" ? (
+          <>
+            {/* Inscription */}
+            <div className="mt-6 flex justify-center">
+              {isLogged ? (
+                <CTA
+                  text="Join tournament"
+                  buttonWidth="40%"
+                  onClick={toggleModal}
+                />
+              ) : (
+                <CTA text="Login to join" buttonWidth="40%" linkTo="/login" />
+              )}
+            </div>
 
-        {isModalOpen && (
-          <Modal
-            setIsModalOpen={setIsModalOpen}
-            title={`Register to ${dataTournament.name}`}
-          >
-            {/* children */}
-            <form className="flex flex-col gap-3" onSubmit={handleRegistration}>
-              <select
-                value={dataRegister.role}
-                onChange={(event) =>
-                  setDataRegister({ role: event.target.value })
-                }
+            {isModalOpen && (
+              <Modal
+                setIsModalOpen={setIsModalOpen}
+                title={`Register to ${dataTournament.name}`}
               >
-                <option value="player">Player</option>
-                <option value="coach">Coach</option>
-                <option value="staff">Staff</option>
-                <option value="jury">Jury</option>
-              </select>
+                {/* children */}
+                <form
+                  className="flex flex-col gap-3"
+                  onSubmit={handleRegistration}
+                >
+                  <select
+                    value={dataRegister.role}
+                    onChange={(event) =>
+                      setDataRegister({ role: event.target.value })
+                    }
+                  >
+                    <option value="player">Player</option>
+                    <option value="coach">Coach</option>
+                    <option value="staff">Staff</option>
+                    <option value="jury">Jury</option>
+                  </select>
 
-              <SubmitButton />
-            </form>
-          </Modal>
+                  <SubmitButton />
+                </form>
+              </Modal>
+            )}
+          </>
+        ) : (
+          <p className="text-center">No registration available for this tournament</p>
         )}
 
         <section className="mt-10">
