@@ -45,8 +45,6 @@ function TournamentDetail() {
   // useState for the data to send to the API for registration
   // One unique object {name, place_name, etc.} with the data for the forms
   const [dataRegister, setDataRegister] = useState({
-    name: "",
-    team: "",
     role: "",
   });
 
@@ -66,14 +64,14 @@ function TournamentDetail() {
     // Try/catch to send the new data to save in the backend
     try {
       let newTournament = await tournamentRegistration(
-        dataRegister.name,
-        dataRegister.team,
         dataRegister.role,
+        dataTournament._id,
         token,
       );
       console.log(newTournament);
       if (newTournament.message == "Ajout du tournoi enregistré !") {
         setMessage("Registration ok !");
+        setIsModalOpen(false);
         setTimeout(() => {
           setMessage("");
         }, 3000);

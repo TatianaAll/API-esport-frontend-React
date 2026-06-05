@@ -40,20 +40,14 @@ export const createTournament = (
   );
 };
 
-export const tournamentRegistration = (
-  user,
-  team,
-  role,
-  tournament_id,
-  token,
-) => {
+export const tournamentRegistration = (role, tournament_id, token) => {
   return callApiBackend.patch(
-    `/tournament/${tournament_id}/register`,
+    `/tournaments/${tournament_id}/register`,
     {
-      user,
-      team,
       role,
     },
-    { headers: { Authorization: `Bearer ${token}` } },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
   );
 };
