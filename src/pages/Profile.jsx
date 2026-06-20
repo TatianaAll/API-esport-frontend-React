@@ -5,7 +5,7 @@ import Spinner from "../components/Spinner";
 import Card from "../components/Card";
 
 function Profile() {
-  let params = useParams();
+  const { id } = useParams();
 
   const [dataUser, setDataUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +13,7 @@ function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const fetchingUser = await oneUser({ userId: params.id });
+        const fetchingUser = await oneUser({ userId: id });
         setDataUser(fetchingUser);
       } catch (error) {
         console.log(error.message);
@@ -22,9 +22,16 @@ function Profile() {
       }
     };
     fetchUser();
-  }, [params.id]);
+  }, [id]);
+  // console.log(dataUser);
 
   if (isLoading) return <Spinner />;
+  if (!dataUser)
+    return (
+      <div className="min-h-screen bg-[#f5f1ec] flex items-center justify-center">
+        <p className="text-chocolate text-lg">Utilisateur non trouvé.</p>
+      </div>
+    );
 
   return (
     <div className="min-h-screen bg-[#f5f1ec]">
@@ -71,6 +78,7 @@ function Profile() {
         <div className="text-center mt-4 text-sm text-chocolate">
           <p>{dataUser.email}</p>
           <p>{dataUser.nationality || "no nationality"}</p>
+          <p>Team: {dataUser.team_id?.name || "no team"}</p>
         </div>
 
         {/* FAVORITE GAME */}
