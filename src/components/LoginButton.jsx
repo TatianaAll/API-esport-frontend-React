@@ -10,8 +10,8 @@ function LoginButton({ buttonWidth }) {
   // For logout :
   const handleLogout = async () => {
     // delete the localStorage
-    localStorage.removeItem("cosy_games_token", currentUser);
-    localStorage.removeItem("cosy_games_user", currentUser);
+    localStorage.removeItem("cosy_games_token");
+    localStorage.removeItem("cosy_games_user");
     // set the current user to null
     setCurrentUser(null);
   };

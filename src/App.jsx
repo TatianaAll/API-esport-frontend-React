@@ -6,10 +6,21 @@ import CurrentUserContext from "./context/CurrentUserContext";
 
 function App() {
   // if we have a user stored in localStorage :
-  const storedUser = JSON.parse(localStorage.getItem("cosy_games_user"));
-  const [currentUser, setCurrentUser] = useState(
-    storedUser ? storedUser : null,
-  );
+  const storedUser = (() => {
+    const raw = localStorage.getItem("cosy_games_user");
+    if (!raw) return null;
+
+    try {
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === "object"
+        ? parsed
+        : { _id: parsed, email: null };
+    } catch {
+      return { _id: raw, email: null };
+    }
+  })();
+
+  const [currentUser, setCurrentUser] = useState(storedUser);
 
   return (
     <>
