@@ -26,7 +26,7 @@ function NavBar() {
         {/* Import title with the component */}
         <li>
           <Link to={`/`}>
-            <Title mainTitle="Cosy Games" subtitle="tournaments" size="small" />
+            <Title mainTitle="Cozy Games" subtitle="tournaments" size="small" />
           </Link>
         </li>
 
@@ -44,11 +44,9 @@ function NavBar() {
         </li>
         {isLogged ? (
           <li className="hidden lg:block lg:px-8 lg:py-4 text-chocolate lg:text-lg hover:underline">
-            <Link to={`/profile/${currentUser}`}>My profile</Link>
+            <Link to={`/profile/${currentUser?._id}`}>My profile</Link>
           </li>
-        ) : (
-          ""
-        )}
+        ) : null}
         <li className="hidden lg:block">
           <LoginButton buttonWidth="100%" />
         </li>
@@ -87,11 +85,9 @@ function NavBar() {
             </li>
             {isLogged ? (
               <li className="px-8 py-4 text-chocolate text-md">
-                <Link to={`/profile/${currentUser}`}>My profile</Link>
+                <Link to={`/profile/${currentUser?._id}`}>My profile</Link>
               </li>
-            ) : (
-              ""
-            )}
+            ) : null}
             <li>
               <LoginButton buttonWidth="70%" />
             </li>

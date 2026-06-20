@@ -25,12 +25,15 @@ function Login() {
       let userData = await login(email, password);
       // localStorage for the JWT
       localStorage.setItem("cosy_games_token", userData.token);
-      // local storage for the ID of the user
-      localStorage.setItem("cosy_games_user", JSON.stringify(userData.userId));
+      // local storage for the user object with ID and email
+      localStorage.setItem(
+        "cosy_games_user",
+        JSON.stringify({ _id: userData.userId, email: userData.email }),
+      );
       if (userData) {
         setSuccessMessage("Welcome !");
-        // Set the user logged
-        setCurrentUser(userData.email);
+        // Set the user logged with both email and id
+        setCurrentUser({ _id: userData.userId, email: userData.email });
         // Message + timeout before redirection
         setTimeout(() => {
           redirectWhenLoginSuccessfully("/");

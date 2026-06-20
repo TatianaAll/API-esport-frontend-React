@@ -19,7 +19,7 @@ function Home() {
             />
           </div>
           <h2 className="font-Mitr text-chocolate text-2xl lg:text-3xl text-center py-5">
-            What is cosy Games tournaments ?
+            What is Cozy Games tournaments ?
           </h2>
         </div>
         <div className="mb-5 pb-3">
